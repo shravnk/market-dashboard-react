@@ -3,7 +3,6 @@ import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom';
 import Home from '../containers/Home'
 import '../App.css';
 import * as actions from '../actions/stockActions.js'
-
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -18,7 +17,6 @@ class App extends Component {
       <Router>
         <div className="App">
           <Route exact path="/" component={Home} />
-          <p>{this.props.delayedPrice}</p>
         </div>
       </Router>
     )
@@ -26,15 +24,10 @@ class App extends Component {
 
 }
 
-function mapStateToProps(state) {
-  return ({
-    delayedPrice: state.stock.delayedPrice
-  })
-}
-
 function mapDispatchToProps(dispatch) {
   return ({
     actions: bindActionCreators(actions, dispatch)
   })
 }
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default connect(null, mapDispatchToProps)(App);

@@ -1,9 +1,9 @@
-export default function stockReducer(state = {loading: false, delayedPrice: 0}, action) {
+export default function stockReducer(state = {loading: false}, action) {
   switch (action.type) {
     case 'LOADING_STOCK':
       return Object.assign({}, state, {loading: true})
-    case 'FETCH_DELAYED_PRICE':
-      return {loading: false, delayedPrice: action.payload}
+    case 'FETCH_CURRENT_DATA':
+      return {loading: false, currentData: action.payload}
     default:
         return state
   }

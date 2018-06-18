@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import stockReducer from './stock_reducer';
 
 const rootReducer = combineReducers({
-  stock: stockReducer
+  stocks: stockReducer
 });
 
 export default rootReducer;

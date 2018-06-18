@@ -4,20 +4,20 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 
 
-const Home = ({delayedPrice}) => {
-
+const Home = ({stocksData}) => {
+    
     return (
       <div id="Home">
         <h1>Home</h1>
-        <p>{delayedPrice}</p>
+
+        <p>Test</p>
       </div>
     )
-  
 }
 
 function mapStateToProps(state) {
   return ({
-    delayedPrice: state.stock.delayedPrice
+    stocksData: state.stocks
   })
 }
 

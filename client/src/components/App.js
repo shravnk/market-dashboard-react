@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux'
 
 class App extends Component {
   componentDidMount() {
-    this.props.actions.fetchStockData()
+    this.props.actions.fetchStocksCurrentData()
   }
 
   render() {

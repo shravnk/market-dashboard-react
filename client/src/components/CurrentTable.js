@@ -9,7 +9,7 @@ const CurrentTable = ({stocks, fetchHistory, history}) => {
      history.push(`/${row.symbol}`)
    },
    onRowMouseOver: function(row){
-     fetchHistory(row.symbol)
+     setTimeout(fetchHistory(row.symbol), 100)
    }
   }
 

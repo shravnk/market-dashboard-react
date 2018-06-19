@@ -4,10 +4,12 @@ import React, { Component } from 'react';
 const PriceHistory = ({historyData, display}) => {
 
   if(display) {
-    const test = historyData[0].open
+    const historyRows = historyData.map(day => <tr><td>{day.date}</td><td>{day.close}</td></tr>)
     return (
       <div>
-      <p>{test}</p>
+        <table className="table">
+          {historyRows}
+        </table>
       </div>
     )
   } else {

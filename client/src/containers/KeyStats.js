@@ -12,8 +12,6 @@ class KeyStats extends Component {
     this.props.fetchData(this.props.symbol)
   }
 
-
-
   render() {
     let stockData = {}
     if (this.props.stocks.detailedData) {

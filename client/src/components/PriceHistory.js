@@ -8,14 +8,15 @@ const PriceHistory = ({historyData, display}) => {
     const historyValues = historyData.map(day => day.close)
     const historyLabels = historyData.map(day => day.date)
     const chartData = Object.assign({}, {labels: historyLabels, datasets: [{
-        label: "My First dataset",
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
+        lineTension: 0,
         data: historyValues,
         }]})
+    const chartOptions = {
+      responsive: false
+    }
     return (
       <div>
-        < Line data={chartData} />
+        < Line data={chartData} height={500} width={700} options={chartOptions} />
       </div>
     )
   } else {

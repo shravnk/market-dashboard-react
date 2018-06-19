@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom';
-import Home from '../containers/Home'
-import '../App.css';
-import * as actions from '../actions/stockActions.js'
+import Home from './containers/Home'
+import './App.css';
+import * as actions from './actions/stockActions.js'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 

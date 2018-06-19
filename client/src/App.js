@@ -5,6 +5,7 @@ import './App.css';
 import * as actions from './actions/stockActions.js'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import KeyStats from './containers/KeyStats.js'
 
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Route exact path="/" component={Home} />
+          <Route exact path={`/:symbol`} component={KeyStats} />
         </div>
       </Router>
     )

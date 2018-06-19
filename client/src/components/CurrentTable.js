@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import { Link } from 'react-router-dom';
 
 const CurrentTable = ({stocks}) => {
+  const renderStocks = stocks.map(stock =>
+    <Link to={`/${stock.symbol}`}>{stock.symbol}</Link>
+  );
   return (
     <div>
     <BootstrapTable data={stocks} >
@@ -11,7 +15,10 @@ const CurrentTable = ({stocks}) => {
       <TableHeaderColumn dataField='high'>High</TableHeaderColumn>
       <TableHeaderColumn dataField='low'>Low</TableHeaderColumn>
     </BootstrapTable>
+    {renderStocks}
     </div>
+
+
   )
 }
 

@@ -11,3 +11,14 @@ export function fetchStocksCurrentData() {
       })
     }
 }
+
+export function fetchStockDetailedData(symbol) {
+  const url = `https://api.iextrading.com/1.0/stock/${symbol}/stats`
+  return (dispatch) => {
+    dispatch({type: 'LOADING_STOCK'})
+    return fetch(url).then(response => {
+      return response.json()}).then(responseJSON => {
+        dispatch({type: 'FETCH_DETAILED_DATA', payload: responseJSON})
+      })
+    }
+}

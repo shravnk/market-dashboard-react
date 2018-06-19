@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Switch, Route, Router } from "react-router-dom";
 import CurrentTable from '../components/CurrentTable'
 import PriceHistory from '../components/PriceHistory'
 import * as actions from '../actions/stockActions'

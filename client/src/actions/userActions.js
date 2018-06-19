@@ -30,7 +30,7 @@ export const newUser = (values) => {
               payload: currentUser
              })
           })
-        }history.push('/')
+        }
       })
   }
 }

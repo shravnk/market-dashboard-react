@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
 import UserLogin from '../components/UserLogin'
 import UserSignup from '../components/UserSignup'
+import {newUser} from '../actions/userActions.js'
+
 
 class UserForm extends Component {
   render() {
-    const { location } = this.props
 
     const renderForm = () => {
-      if ( location.pathname === "/login"){
+      if ( this.props.match.path === "/login"){
           return (<UserLogin />)
-        } else if ( location.pathname === "/signup") {
-          return(<UserSignup />)
+        } else if ( this.props.match.path === "/signup") {
+          return(<UserSignup createUser={this.props.newUser} />)
       }
     }
     return(
@@ -20,5 +21,10 @@ class UserForm extends Component {
     )
   }
 }
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    newUser: newUser }
+    , dispatch)
+}
 
-export default withRouter(connect()(UserForm))
+export default connect(null, mapDispatchToProps)(UserForm)

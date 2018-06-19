@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Home from './containers/Home'
 import './App.css';
 import KeyStats from './containers/KeyStats.js'
+import UserForm from './containers/UserForm'
 
 
 class App extends Component {
-
   render() {
     return (
-      <Router>
         <div className="App">
-          <Route exact path="/" component={Home} />
-          <Route exact path={`/:symbol`} component={KeyStats} />
-          <Route exact path={`/signup`} component={UserForm} />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path={`/signup`} component={UserForm} />
+            <Route path={`/:symbol`} component={KeyStats} />
+          </Switch>
         </div>
-      </Router>
     )
   }
 

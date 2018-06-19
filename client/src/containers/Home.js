@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import { Switch, Route, Router } from "react-router-dom";
 import CurrentTable from '../components/CurrentTable.js'
+import * as actions from '../actions/stockActions.js'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 
 
-const Home = ({match, stocks}) => {
+class Home extends Component  {
+  componentDidMount() {
+    this.props.actions.fetchStocksCurrentData()
+  }
+  render() {
     let stocksData = []
-    if (stocks.currentData) {
-      stocksData = stocks.currentData.map((stock) => ({
-        symbol: stock.quote.symbol,
-        latestPrice: stock.quote.latestPrice,
-        changePercent: stock.quote.changePercent * 100,
-        high: stock.quote.high,
-        low: stock.quote.low
-        }))
+    if (this.props.stocks.currentData) {
+      stocksData = this.props.stocks.currentData
     }
-
+    
     return (
       <div id="Home">
         <h1>Home</h1>
         <CurrentTable stocks={stocksData} />
       </div>
     )
+  }
 }
 
 function mapStateToProps(state) {
@@ -32,5 +32,11 @@ function mapStateToProps(state) {
   })
 }
 
+function mapDispatchToProps(dispatch) {
+  return ({
+    actions: bindActionCreators(actions, dispatch)
+  })
+}
 
-export default connect(mapStateToProps)(Home)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

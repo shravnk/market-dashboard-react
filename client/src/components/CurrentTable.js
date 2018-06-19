@@ -6,7 +6,9 @@ const CurrentTable = ({stocks, fetchHistory, history}) => {
 
   const options = {
    onRowClick: function(row){
-     // history.push(`/${row.symbol}`)
+     history.push(`/${row.symbol}`)
+   },
+   onRowMouseOver: function(row){
      fetchHistory(row.symbol)
    }
   }

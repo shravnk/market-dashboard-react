@@ -4,7 +4,7 @@ export function fetchStocksCurrentData() {
   const stockList = ["AAPL", "FB", "C"].join(",")
   const url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${stockList}&types=quote`
   return (dispatch) => {
-    dispatch({type: 'LOADING_STOCK'})
+    dispatch({type: 'LOADING_CURRENT_DATA'})
     return fetch(url).then(response => {
       return response.json()}).then(responseJSON => {
         dispatch({type: 'FETCH_CURRENT_DATA', payload: responseJSON})
@@ -15,7 +15,7 @@ export function fetchStocksCurrentData() {
 export function fetchStockDetailedData(symbol) {
   const url = `https://api.iextrading.com/1.0/stock/${symbol}/stats`
   return (dispatch) => {
-    dispatch({type: 'LOADING_STOCK'})
+    dispatch({type: 'LOADING_DETAILED_DATA'})
     return fetch(url).then(response => {
       return response.json()}).then(responseJSON => {
         dispatch({type: 'FETCH_DETAILED_DATA', payload: responseJSON})

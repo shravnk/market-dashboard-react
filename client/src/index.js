@@ -9,6 +9,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'react-bootstrap-table/dist/react-bootstrap-table.min.css';
 
 const store = createStore(rootReducer, compose(
   applyMiddleware(thunk),

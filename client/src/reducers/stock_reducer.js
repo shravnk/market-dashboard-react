@@ -1,4 +1,4 @@
-export default function stockReducer(state = {loading: false}, action) {
+export default function stockReducer(state = {loading: false, showHistory: false}, action) {
   switch (action.type) {
     case 'LOADING_CURRENT_DATA':
       return Object.assign({}, state, {loading: true})
@@ -16,6 +16,10 @@ export default function stockReducer(state = {loading: false}, action) {
         return Object.assign({}, state, {loading: true, detailedData: null})
     case 'FETCH_DETAILED_DATA':
         return Object.assign({}, state, {loading: false, detailedData: action.payload})
+    case 'LOADING_HISTORY_DATA':
+        return Object.assign({}, state, {loading: true, showHistory: false, historyData: null})
+    case 'FETCH_HISTORY_DATA':
+        return Object.assign({}, state, {loading: false, showHistory: true, historyData: action.payload})
     default:
         return state
   }

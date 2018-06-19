@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import { Link , withRouter } from 'react-router-dom';
 
-const CurrentTable = ({stocks, history}) => {
+const CurrentTable = ({stocks, fetchHistory, history}) => {
 
   const options = {
    onRowClick: function(row){
-     history.push(`/${row.symbol}`)
+     // history.push(`/${row.symbol}`)
+     fetchHistory(row.symbol)
    }
   }
 

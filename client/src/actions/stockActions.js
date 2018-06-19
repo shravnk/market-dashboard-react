@@ -22,3 +22,14 @@ export function fetchStockDetailedData(symbol) {
       })
     }
 }
+
+export function fetchStockHistory(symbol) {
+  const url = `https://api.iextrading.com/1.0/stock/${symbol}/chart/5d`
+  return (dispatch) => {
+    dispatch({type: 'LOADING_HISTORY_DATA'})
+    return fetch(url).then(response => {
+      return response.json()}).then(responseJSON => {
+        dispatch({type: 'FETCH_HISTORY_DATA', payload: responseJSON})
+      })
+    }
+}

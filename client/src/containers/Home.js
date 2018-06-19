@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Route, Router } from "react-router-dom";
-import CurrentTable from '../components/CurrentTable.js'
-import * as actions from '../actions/stockActions.js'
+import CurrentTable from '../components/CurrentTable'
+import PriceHistory from '../components/PriceHistory'
+import * as actions from '../actions/stockActions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -16,11 +17,16 @@ class Home extends Component  {
     if (this.props.stocks.currentData) {
       stocksData = this.props.stocks.currentData
     }
-    
+    let historyData = []
+    if (this.props.stocks.historyData) {
+      historyData = this.props.stocks.historyData
+    }
+
     return (
       <div id="Home">
         <h1>Home</h1>
-        <CurrentTable stocks={stocksData} />
+        <CurrentTable stocks={stocksData} fetchHistory={this.props.actions.fetchStockHistory} />
+        <PriceHistory historyData={historyData} display={this.props.stocks.showHistory} />
       </div>
     )
   }

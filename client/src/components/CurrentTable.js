@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import { Link } from 'react-router-dom';
+import { Link , withRouter } from 'react-router-dom';
 
-const CurrentTable = ({stocks}) => {
+const CurrentTable = ({stocks, history}) => {
   const renderStocks = stocks.map(stock =>
     <Link to={`/${stock.symbol}`}>{stock.symbol}</Link>
   );
+  var options = {
+   onRowClick: function(row){
+     history.push(`/${row.symbol}`)
+   }
+  }
+
   return (
     <div>
-    <BootstrapTable data={stocks} >
+    <BootstrapTable data={stocks} options={options} >
       <TableHeaderColumn isKey={true} dataField='symbol' dataSort>Symbol</TableHeaderColumn>
       <TableHeaderColumn dataField='latestPrice'>Last Price</TableHeaderColumn>
       <TableHeaderColumn dataField='changePercent' dataSort>% Change</TableHeaderColumn>
@@ -22,4 +28,4 @@ const CurrentTable = ({stocks}) => {
   )
 }
 
-export default CurrentTable;
+export default withRouter(CurrentTable);

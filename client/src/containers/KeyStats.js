@@ -21,7 +21,7 @@ class KeyStats extends Component {
     }
     return (
       <div className="container">
-        <p>Its me, {this.props.symbol}</p>
+        <h3>{stockData.companyName}</h3>
         <KeyStatsTable stockData={stockData} />
 
       </div>

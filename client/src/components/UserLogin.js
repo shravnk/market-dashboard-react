@@ -1,5 +1,8 @@
 import React from 'react'
 import { loginUser } from '../actions/userActions'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
 
 const LoginUser = ({ loginUser }) => {
 
@@ -30,4 +33,10 @@ const LoginUser = ({ loginUser }) => {
   )
 }
 
-export default LoginUser
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    loginUser: loginUser }
+    , dispatch)
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(LoginUser))

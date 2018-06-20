@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
+import { Router } from 'react-router-dom'
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import history from './history'
 import rootReducer from './reducers/index';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -19,9 +20,9 @@ const store = createStore(rootReducer, compose(
 
 ReactDOM.render(
   <Provider store={store}>
-  <BrowserRouter>
+  <Router history = {history}>
     <App />
-  </BrowserRouter>
+  </Router>
   </Provider>,
   document.getElementById('root')
 );

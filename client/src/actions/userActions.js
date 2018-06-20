@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import history from '../history'
 
 export const newUser = (values) => {
   return (dispatch) => {
@@ -32,7 +33,7 @@ export const newUser = (values) => {
               payload: currentUser
              })
           })
-        }
+        } history.push('/home')
       })
   }
 }
@@ -69,7 +70,7 @@ export const loginUser = (values) => {
             payload: currentUser
            })
         })
-      }
+      } history.push('/home')
     })
   }
 }

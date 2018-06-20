@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {fetchStockDetailedData} from '../actions/stockActions.js'
 import KeyStatsTable from '../components/KeyStatsTable'
 

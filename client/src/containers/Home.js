@@ -4,6 +4,7 @@ import PriceHistory from '../components/PriceHistory'
 import * as actions from '../actions/stockActions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { withRouter } from 'react-router-dom'
 
 
 
@@ -44,4 +45,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home))

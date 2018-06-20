@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import { Link , withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const CurrentTable = ({stocks, fetchHistory, history}) => {
 

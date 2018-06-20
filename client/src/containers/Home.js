@@ -34,7 +34,8 @@ class Home extends Component  {
 
 function mapStateToProps(state) {
   return ({
-    stocks: state.stocks
+    stocks: state.stocks,
+    user: state.user
   })
 }
 

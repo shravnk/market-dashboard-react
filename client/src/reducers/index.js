@@ -4,7 +4,7 @@ import userReducer from './user_reducer';
 
 const rootReducer = combineReducers({
   stocks: stockReducer,
-  user: userReducer
+  currentUser: userReducer
 });
 
 export default rootReducer;

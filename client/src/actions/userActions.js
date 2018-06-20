@@ -1,7 +1,9 @@
+import fetch from 'isomorphic-fetch'
+
 export const newUser = (values) => {
   return (dispatch) => {
     dispatch({type: 'START_SIGNUP'})
-    return fetch(`http://localhost:3000/api/auth/users`, {
+    return fetch('/api/users', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(

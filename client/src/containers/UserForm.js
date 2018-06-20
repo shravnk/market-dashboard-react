@@ -11,7 +11,7 @@ class UserForm extends Component {
 
     const renderForm = () => {
       if ( this.props.match.path === "/login"){
-          return (<UserLogin />)
+          return (<UserLogin loginUser={this.props.loginUser}/>)
         } else if ( this.props.match.path === "/signup") {
           return(<UserSignup createUser={this.props.newUser} />)
       }
@@ -23,7 +23,8 @@ class UserForm extends Component {
 }
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    newUser: newUser }
+    newUser: newUser,
+    loginUser: loginUser}
     , dispatch)
 }
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import UserLogin from '../components/UserLogin'
 import UserSignup from '../components/UserSignup'
-import {newUser} from '../actions/userActions.js'
+import {newUser, loginUser} from '../actions/userActions.js'
 
 
 class UserForm extends Component {

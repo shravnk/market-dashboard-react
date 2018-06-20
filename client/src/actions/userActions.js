@@ -39,8 +39,8 @@ export const newUser = (values) => {
 
 export const loginUser = (values) => {
   return (dispatch) => {
-    dispatch({type: 'LOGIN'})
-    return fetch(`api/sessions`, {
+    dispatch({type: 'START_LOGIN'})
+    return fetch('/api/sessions', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(

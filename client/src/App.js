@@ -3,16 +3,18 @@ import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Home from './containers/Home'
 import './App.css';
-import KeyStats from './containers/KeyStats.js'
+import KeyStats from './containers/KeyStats'
 import UserForm from './containers/UserForm'
+import NavBar from './components/NavBar'
 
 
 class App extends Component {
   render() {
     if (this.props.currentUser.auth_success) {
     return (
-        <NavBar currentUser={this.props.currentUser} />
+
         <div className="App">
+        <NavBar currentUser={this.props.currentUser} />
           <Switch>
             <Redirect from="/" exact to="/home"/>
             <Redirect from="/login" exact to="/home"/>

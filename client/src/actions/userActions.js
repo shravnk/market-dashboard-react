@@ -75,22 +75,19 @@ export const loginUser = (values) => {
   }
 }
 
-export const logoutUser = (currentUser) => {
+export const logout = (currentUser) => {
   return (dispatch) => {
     dispatch({type: 'LOGGING_USER_OUT'})
-    return fetch(`http://localhost:3000/api/auth/logout`,{
+    return fetch(`api/logout`,{
       method: 'delete',
       headers: {
-        'Content-Type': 'application/json',
-        'X-User-Email': currentUser.email,
-        'X-User-Token': currentUser.authentication_token
-      },
+        'Content-Type': 'application/json'},
       body: JSON.stringify(
-        { "user": {"email" : currentUser.email}})
+        { "user": {"username" : currentUser.username}})
     })
     .then(
       dispatch({
-        type: 'USER_LOGOUT',
+        type: 'LOGOUT',
         payload: { message: 'Succesfully logged out' }
       })
     )

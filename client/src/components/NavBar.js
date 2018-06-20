@@ -35,8 +35,17 @@ const NavBar = ({currentUser, logout}) => {
         <div style={{ borderBottom: '2px solid black', paddingBottom: '10px', marginBottom: '12px' }}>
           <NavLink
             style={{ marginRight: '10px' }}
-            to=""
+            to="/login"
+            onClick={handleSubmit}
           >
+          Login
+          </NavLink>
+          <NavLink
+            style={{ marginRight: '10px' }}
+            to="/signup"
+            onClick={handleSubmit}
+          >
+          Sign Up
           </NavLink>
         </div>
       )

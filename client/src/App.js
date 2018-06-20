@@ -27,6 +27,7 @@ class App extends Component {
     } else {
       return(
       <div className="App">
+        <NavBar currentUser={this.props.currentUser} />
         <Switch>
           <Redirect from="/" exact to="/login" />
           <Redirect from="/home" exact to="/login" />

@@ -11,6 +11,7 @@ class App extends Component {
   render() {
     if (this.props.currentUser.auth_success) {
     return (
+        <NavBar currentUser={this.props.currentUser} />
         <div className="App">
           <Switch>
             <Redirect from="/" exact to="/home"/>

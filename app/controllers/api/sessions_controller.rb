@@ -11,7 +11,7 @@ class Api::SessionsController < ApplicationController
     else
       render json:{ message: "Username not found"}, status: 401
     end
-    end
+
   end
 
   def destroy
@@ -27,3 +27,4 @@ class Api::SessionsController < ApplicationController
       :password,
     )
   end
+end

@@ -23,6 +23,7 @@ const NavBar = ({currentUser, logout}) => {
           <NavLink
             style={{ marginRight: '10px' }}
             onClick={handleSubmit}
+            to="/login"
           >
             Log Out
           </NavLink>

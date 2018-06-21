@@ -10,14 +10,12 @@ export default function UserReducer(state = {auth_success: false}, action) {
 
     case 'LOGIN':
       if (action.payload.auth_success === true) {
-        const currentUser = Object.assign({}, action.payload)
-        return currentUser
-      }else {
+        return Object.assign({}, action.payload)
+      } else {
         return Object.assign({}, state, action.payload)
       }
     case 'LOGOUT':
-      const currentUser = Object.assign({}, {auth_success: false}, action.payload)
-      return currentUser
+      return Object.assign({}, {auth_success: false}, action.payload)
     default:
       return state
   }

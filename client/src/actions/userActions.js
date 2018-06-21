@@ -78,7 +78,7 @@ export const loginUser = (values) => {
 export const logout = (currentUser) => {
   return (dispatch) => {
     dispatch({type: 'LOGGING_USER_OUT'})
-    return fetch(`api/logout`,{
+    return fetch(`/api/sessions`,{
       method: 'delete',
       headers: {
         'Content-Type': 'application/json'},

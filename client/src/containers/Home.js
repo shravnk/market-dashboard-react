@@ -10,7 +10,7 @@ import { withRouter } from 'react-router-dom'
 
 class Home extends Component  {
   componentDidMount() {
-    this.props.actions.fetchStocksCurrentData()
+    this.props.actions.fetchStocksCurrentData(this.props.user.stocks)
   }
   render() {
     let stocksData = []
@@ -35,7 +35,7 @@ class Home extends Component  {
 function mapStateToProps(state) {
   return ({
     stocks: state.stocks,
-    user: state.user
+    user: state.currentUser
   })
 }
 

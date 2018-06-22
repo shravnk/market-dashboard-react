@@ -5,7 +5,7 @@ import Home from './containers/Home'
 import './App.css';
 import KeyStats from './containers/KeyStats'
 import UserForm from './containers/UserForm'
-import StocksManager from '.containers/StocksManager'
+import StocksManager from './containers/StocksManager'
 import NavBar from './components/NavBar'
 
 
@@ -21,8 +21,9 @@ class App extends Component {
             <Redirect from="/login" exact to="/home"/>
             <Redirect from="/signup" exact to="/home"/>
             <Route exact path={`/home`} component={Home} />
-            <Route path={`/:symbol`} component={KeyStats} />
             <Route path={`/manage`} component={StocksManager} />
+            <Route path={`/:symbol`} component={KeyStats} />
+
           </Switch>
         </div>
     )

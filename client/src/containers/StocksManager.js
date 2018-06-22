@@ -16,14 +16,14 @@ class StocksManager extends Component {
 
 function mapStateToProps(state) {
   return ({
-    currentUser: currentUser
+    currentUser: state.currentUser.username
   })
 }
 
-function mapDispatchToProps(dispatch) {
-  return ({
-    addStocks: addStocks
-  })
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    addStocks: addStocks}
+    , dispatch)
 }
 
 

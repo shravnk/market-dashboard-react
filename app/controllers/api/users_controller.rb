@@ -10,6 +10,21 @@ def create
    end
  end
 
+ def add_stocks
+   puts params[:username]
+   @user = User.find_by(username: params[:user][:username])
+   @stock = Stock.find_or_create_by(symbol: params[:stock][:symbol])
+   puts @user.username
+   if @user && @stock
+     @user.stocks << @stock
+     render json: @user.stocks, status: :created
+   else
+     render json: @user.stocks, status: :unprocessable_entity
+   end
+
+ end
+
+
   private
 
   def user_params

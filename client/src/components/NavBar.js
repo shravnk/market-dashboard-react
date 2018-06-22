@@ -22,6 +22,13 @@ const NavBar = ({currentUser, logout}) => {
           </NavLink>
           <NavLink
             style={{ marginRight: '10px' }}
+            to="/manage"
+          >
+            Manage Account
+          </NavLink>
+
+          <NavLink
+            style={{ marginRight: '10px' }}
             onClick={handleSubmit}
             to="/login"
           >

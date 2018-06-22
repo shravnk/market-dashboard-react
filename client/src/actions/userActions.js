@@ -93,3 +93,43 @@ export const logout = (currentUser) => {
     )
   }
 }
+
+
+export const addStocks = (values) => {
+  return (dispatch) => {
+    dispatch({type: 'START_ADD_STOCK'})
+    return fetch('/api/stocks', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(
+          { "stock": {
+            "symbol" : values.symbol
+          },
+          "user": {
+            "username": values.username
+          }
+        }),
+      })
+      .then(response => {
+        if (response.status !== 201) {
+          response.json()
+          .then(addStockResponse => {
+            let addStockAttempt = { message: addStockResponse };
+            dispatch({
+              type: 'ADD_STOCKS',
+              payload: addStockAttempt
+             })
+          })
+        } else {
+          response.json()
+          .then(addStockResponse => {
+            let addStockAttempt = Object.assign({}, addStockResponse)
+            dispatch({
+              type: 'ADD_STOCKS',
+              payload: addStockAttempt
+             })
+          })
+        } history.push('/home')
+      })
+  }
+}

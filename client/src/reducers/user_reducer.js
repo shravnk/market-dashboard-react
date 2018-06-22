@@ -1,4 +1,4 @@
-export default function UserReducer(state = {auth_success: false}, action) {
+export default function UserReducer(state = {auth_success: false, symbols: []}, action) {
   switch ( action.type ) {
     case 'USER_SIGNUP':
       if (action.payload.auth_success === true){
@@ -16,6 +16,8 @@ export default function UserReducer(state = {auth_success: false}, action) {
       }
     case 'LOGOUT':
       return Object.assign({}, {auth_success: false}, action.payload)
+    case 'ADD_STOCKS':
+      return Object.assign({}, state, action.payload)
     default:
       return state
   }

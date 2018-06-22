@@ -9,9 +9,10 @@ const AddStocksForm = ({ currentUser, addStocks }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const data = {
-      'symbol': this.symbol.value
+      'symbol': this.symbol.value,
+      'username': currentUser
     }
-    loginUser(data)
+    addStocks(data)
   }
   return(
     <div>
@@ -22,7 +23,7 @@ const AddStocksForm = ({ currentUser, addStocks }) => {
           <input type="text" ref = {node => this.symbol = node} />
         </div>
         <br></br>
-        <button type="submit" label="submit">Login</button>
+        <button type="submit" label="submit">Add Stock</button>
       </form>
     </div>
   )

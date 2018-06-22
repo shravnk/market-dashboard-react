@@ -123,13 +123,20 @@ export const addStocks = (values) => {
         } else {
           response.json()
           .then(addStockResponse => {
-            let addStockAttempt = Object.assign({}, addStockResponse)
+            let addStockAttempt = Object.assign({}, {stocks: addStockResponse, message: `Succesfully added stock  ${values.symbol}`})
             dispatch({
               type: 'ADD_STOCKS',
               payload: addStockAttempt
              })
           })
-        } history.push('/home')
+        } history.push('/manage')
       })
+  }
+}
+
+export const deleteMessage = () => {
+  return (dispatch) => {
+    const t = 't'
+    dispatch({type: 'DELETE_MESSAGE'})
   }
 }

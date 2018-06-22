@@ -17,7 +17,9 @@ export default function UserReducer(state = {auth_success: false, symbols: []}, 
     case 'LOGOUT':
       return Object.assign({}, {auth_success: false}, action.payload)
     case 'ADD_STOCKS':
-      return Object.assign({}, state, action.payload)
+      return Object.assign({}, state, {stocks: Object.values(action.payload.stocks), messageSuccess: action.payload.message})
+    case 'DELETE_MESSAGE':
+      return Object.assign({}, state, {messageSuccess: ''})
     default:
       return state
   }

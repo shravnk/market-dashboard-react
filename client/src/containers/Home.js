@@ -12,6 +12,7 @@ class Home extends Component  {
   componentDidMount() {
     this.props.actions.fetchStocksCurrentData(this.props.user.stocks)
   }
+
   render() {
     let stocksData = []
     if (this.props.stocks.currentData) {

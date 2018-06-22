@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 
-const AddStocksForm = ({ currentUser, addStocks }) => {
+const AddStocksForm = ({ currentUser, addStocks, message }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -25,6 +25,7 @@ const AddStocksForm = ({ currentUser, addStocks }) => {
         <br></br>
         <button type="submit" label="submit">Add Stock</button>
       </form>
+      <p>{message}</p>
     </div>
   )
 }

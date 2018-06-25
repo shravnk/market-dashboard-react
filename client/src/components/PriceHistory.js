@@ -12,11 +12,13 @@ const PriceHistory = ({historyData, display}) => {
         data: historyValues,
         }]})
     const chartOptions = {
-      responsive: false
+      legend: {
+        display: false
+      }
     }
     return (
       <div>
-        < Line data={chartData} height={500} width={700} options={chartOptions} />
+        <Line data={chartData} options={chartOptions} />
       </div>
     )
   } else {

@@ -11,7 +11,7 @@ const KeyStatsTable = ({stockData}) => {
     <table className="table">
       <tr>
         <td>Market Cap</td>
-        <td>$ {formattedStockData.marketcap} mm</td>
+        <td>$ {formattedStockData.marketcap} bn</td>
       </tr>
       <tr>
         <td>Price to Book</td>
@@ -45,8 +45,24 @@ const KeyStatsTable = ({stockData}) => {
         <td>50 Day Moving Avg</td>
         <td>{formattedStockData.day50MovingAvg}</td>
       </tr>
-    </table>
-    </div>
+      </table>
+      </div>
+      <div className="col-sm-4">
+      <table className="table">
+        <tr>
+          <td>EPS (ttm)</td>
+          <td>{formattedStockData.ttmEPS}</td>
+        </tr>
+        <tr>
+          <td>Dividend Yield</td>
+          <td>{formattedStockData.dividendYield}</td>
+        </tr>
+        <tr>
+          <td>ROE</td>
+          <td>{formattedStockData.returnOnEquity}</td>
+        </tr>
+      </table>
+      </div>
     </div>
     </div>
 
@@ -57,7 +73,7 @@ const KeyStatsTable = ({stockData}) => {
 export function formatStockDetails(stockData) {
   let returnData = {}
   if (typeof stockData.marketcap !== 'undefined') {
-    returnData.marketcap = (stockData.marketcap / 1000000).toFixed(3)
+    returnData.marketcap = (stockData.marketcap / 1000000000).toFixed(3)
   }
 
   if (typeof stockData.priceToBook !== 'undefined') {
@@ -84,6 +100,20 @@ export function formatStockDetails(stockData) {
 
   if (typeof stockData.day50MovingAvg !== 'undefined') {
     returnData.day50MovingAvg = stockData.day50MovingAvg.toFixed(3)
+  }
+
+
+
+  if (typeof stockData.ttmEPS !== 'undefined') {
+    returnData.ttmEPS = stockData.ttmEPS.toFixed(3)
+  }
+
+  if (typeof stockData.returnOnEquity !== 'undefined') {
+    returnData.returnOnEquity = stockData.returnOnEquity.toFixed(3)
+  }
+
+  if (typeof stockData.dividendYield !== 'undefined') {
+    returnData.dividendYield = stockData.dividendYield.toFixed(3)
   }
 
 

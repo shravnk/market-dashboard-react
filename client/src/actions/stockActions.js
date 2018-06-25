@@ -5,12 +5,27 @@ export function fetchStocksCurrentData(stocks) {
   const url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${stockList}&types=quote`
   return (dispatch) => {
     dispatch({type: 'LOADING_CURRENT_DATA'})
-    return fetch(url).then(response => {
-      return response.json()}).then(responseJSON => {
-        dispatch({type: 'FETCH_CURRENT_DATA', payload: responseJSON})
+    return fetch(url)
+    .then(response => {
+      if (response.status !== 200) {
+        response.json()
+        .then(stocksResponseJson => {
+          let stocksAttempt = {message: stocksResponseJson[0]}
+          dispatch({
+            type: 'EMPTY_STOCK_LIST',
+            payload: stocksAttempt
+           })
+        })
+      } else {
+        response.json()
+          .then(responseJSON => {
+            dispatch({type: 'FETCH_CURRENT_DATA', payload: responseJSON
+            })
+          })
+        }
       })
     }
-}
+  }
 
 export function fetchStockDetailedData(symbol) {
   const url = `https://api.iextrading.com/1.0/stock/${symbol}/stats`

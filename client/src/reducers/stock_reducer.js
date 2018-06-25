@@ -10,10 +10,10 @@ export default function stockReducer(state = {loading: false, showHistory: false
       } else {
         currentData = stocksResponse.map((stock) => ({
           symbol: stock.quote.symbol,
-          latestPrice: stock.quote.latestPrice,
-          changePercent: stock.quote.changePercent * 100,
-          high: stock.quote.high,
-          low: stock.quote.low
+          latestPrice: stock.quote.latestPrice.toFixed(2),
+          changePercent: (stock.quote.changePercent * 100).toFixed(2),
+          high: stock.quote.high.toFixed(2),
+          low: stock.quote.low.toFixed(2)
           }))
       }
       return Object.assign({}, state, {loading: false, currentData: currentData})

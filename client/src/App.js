@@ -22,7 +22,7 @@ class App extends Component {
             <Redirect from="/signup" exact to="/home"/>
             <Route exact path={`/home`} component={Home} />
             <Route path={`/manage`} component={StocksManager} />
-            <Route path={`/:symbol`} component={KeyStats} />
+            <Route path={`/stocks/:symbol`} component={KeyStats} />
 
           </Switch>
         </div>

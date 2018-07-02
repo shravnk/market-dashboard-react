@@ -136,7 +136,6 @@ export const addStocks = (values) => {
 
 export const deleteMessage = () => {
   return (dispatch) => {
-    const t = 't'
     dispatch({type: 'DELETE_MESSAGE'})
   }
 }

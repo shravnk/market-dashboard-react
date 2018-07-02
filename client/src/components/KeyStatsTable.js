@@ -72,50 +72,47 @@ const KeyStatsTable = ({stockData}) => {
 
 export function formatStockDetails(stockData) {
   let returnData = {}
-  if (typeof stockData.marketcap !== 'undefined') {
+  if (stockData.marketcap !== null && stockData.marketcap !== undefined) {
     returnData.marketcap = (stockData.marketcap / 1000000000).toFixed(3)
   }
 
-  if (typeof stockData.priceToBook !== 'undefined') {
+  if (stockData.priceToBook !== null && stockData.priceToBook !== undefined) {
     returnData.priceToBook = stockData.priceToBook.toFixed(3)
   }
-  if (typeof stockData.priceToSales !== 'undefined') {
+  if (stockData.priceToSales !== null && stockData.priceToSales !== undefined) {
     returnData.priceToSales = stockData.priceToSales.toFixed(3)
   }
-  if (typeof stockData.beta !== 'undefined') {
+  if (stockData.beta !== null && stockData.beta !== undefined) {
     returnData.beta = stockData.beta.toFixed(3)
   }
 
-  if (typeof stockData.week52high !== 'undefined') {
+  if (stockData.week52high !== null && stockData.week52high !== undefined) {
     returnData.week52high = stockData.week52high.toFixed(3)
   }
 
-  if (typeof stockData.week52low !== 'undefined') {
+  if (stockData.week52low !== null && stockData.week52low !== undefined) {
     returnData.week52low = stockData.week52low.toFixed(3)
   }
 
-  if (typeof stockData.day200MovingAvg !== 'undefined') {
+  if (stockData.day200MovingAvg !== null && stockData.day200MovingAvg !== undefined) {
     returnData.day200MovingAvg = stockData.day200MovingAvg.toFixed(3)
   }
 
-  if (typeof stockData.day50MovingAvg !== 'undefined') {
+  if (stockData.day50MovingAvg !== null && stockData.day50MovingAvg !== undefined) {
     returnData.day50MovingAvg = stockData.day50MovingAvg.toFixed(3)
   }
 
-
-
-  if (typeof stockData.ttmEPS !== 'undefined') {
+  if (stockData.ttmEPS !== null && stockData.ttmEPS !== undefined) {
     returnData.ttmEPS = stockData.ttmEPS.toFixed(3)
   }
 
-  if (typeof stockData.returnOnEquity !== 'undefined') {
+  if (stockData.returnOnEquity !== null && stockData.returnOnEquity !== undefined) {
     returnData.returnOnEquity = stockData.returnOnEquity.toFixed(3)
   }
 
-  if (typeof stockData.dividendYield !== 'undefined') {
+  if (stockData.dividendYield !== null && stockData.dividendYield !== undefined) {
     returnData.dividendYield = stockData.dividendYield.toFixed(3)
   }
-
 
   return returnData
 }

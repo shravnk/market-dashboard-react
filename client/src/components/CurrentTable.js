@@ -13,11 +13,11 @@ const CurrentTable = ({stocks, fetchHistory, history, handleUpvote}) => {
    }
   }
 
-  const buttonFormatter = () => {
+  const buttonFormatter = (cell, row) => {
     return (
       <button
         className="btn btn-secondary"
-        onClick={handleUpvote}
+        onClick={(e) => handleUpvote(e, row.symbol)}
       >
       Upvote
       </button>
@@ -33,7 +33,7 @@ const CurrentTable = ({stocks, fetchHistory, history, handleUpvote}) => {
       <TableHeaderColumn dataField='high'>High</TableHeaderColumn>
       <TableHeaderColumn dataField='low'>Low</TableHeaderColumn>
       <TableHeaderColumn dataField='voteCount' dataSort>Votes</TableHeaderColumn>
-      <TableHeaderColumn dataField="button" dataFormat={buttonFormatter}>Vote</TableHeaderColumn>
+      <TableHeaderColumn dataField="button" dataFormat={buttonFormatter}></TableHeaderColumn>
     </BootstrapTable>
     </div>
 

@@ -21,17 +21,15 @@ class Home extends Component  {
     this.props.actions.fetchStocksCurrentData(this.props.user.stocks)
   }
 
-  handleUpvote = (e) => {
+  handleUpvote = (e, symbol) => {
+    debugger
     e.stopPropagation()
     let upvotes = [...this.state.upvotes]
-    let upvote = {...upvotes[0]}
-    upvote.voteCount = 1
-    upvotes[0] = upvote
+    let upvote = upvotes.find(stock => stock.symbol === symbol)
+    upvote.voteCount += 1
     this.setState({
       upvotes: upvotes
     })
-
-
   }
 
   render() {

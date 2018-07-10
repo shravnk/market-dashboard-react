@@ -134,6 +134,45 @@ export const addStocks = (values) => {
   }
 }
 
+export const upvoteStock = () => {
+  return (dispatch) => {
+    dispatch({type: 'ATTEMPT_UPVOTE'})
+    return fetch('/api/upvote', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(
+          { "stock": {
+            "symbol" : values.symbol
+          },
+          "user": {
+            "username": values.username
+          }
+        }),
+      })
+      .then(response => {
+        if (response.status !== 201) {
+          response.json()
+          .then(upvoteResponse => {
+            let upvoteAttempt = { message: upvoteResponse };
+            dispatch({
+              type: 'UPVOTE_FAILURE',
+              payload: upvoteAttempt
+             })
+          })
+        } else {
+          response.json()
+          .then(upvoteResponse => {
+            let upvoteAttempt = Object.assign({}, {stocks: upvoteResponse, message: `Succesfully upvoted`})
+            dispatch({
+              type: 'UPVOTE_SUCCESS',
+              payload: upvoteAttempt
+             })
+          })
+        }
+      })
+  }
+}
+
 export const deleteMessage = () => {
   return (dispatch) => {
     dispatch({type: 'DELETE_MESSAGE'})

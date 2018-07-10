@@ -21,6 +21,18 @@ class Api::UsersController < ApplicationController
      end
    end
 
+   def upvote
+     user = User.find_by(username: params[:user][:username])
+     stock = Stock.find_or_create_by(symbol: params[:stock][:symbol])
+     @userstock = Userstock.where(user_id: user.id, stock_id: stock.id)
+     if @userstock
+       @userstock.upvotes += 1
+       render json: @userstock, status: :created
+     else
+       render json: @user.stocks, status: :unprocessable_entity
+     end
+   end
+
 
   private
 

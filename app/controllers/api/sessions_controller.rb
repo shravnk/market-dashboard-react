@@ -4,7 +4,7 @@ class Api::SessionsController < ApplicationController
     if @user = User.find_by(username: session_params[:username])
       if @user.authenticate(session_params[:password])
         session[:user_id] = @user.id
-        render json: @user, include: :stocks
+        render json: @user, include: :stocks_with_votes
       else
         render json: { message: "Incorrect password"}, status: 401
       end

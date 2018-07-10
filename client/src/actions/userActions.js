@@ -64,7 +64,8 @@ export const loginUser = (values) => {
       } else {
         response.json()
         .then(loginResponseJson => {
-          let currentUser = Object.assign({}, loginResponseJson, {auth_success: true}, { message: `Successfully Logged in as ${loginResponseJson.username}` })
+          const r = loginResponseJson
+          let currentUser = Object.assign({}, {stocks: r.stocks_with_votes , username: r.username}, {auth_success: true}, { message: `Successfully Logged in as ${loginResponseJson.username}` })
           dispatch({
             type: 'LOGIN',
             payload: currentUser

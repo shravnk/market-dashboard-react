@@ -9,14 +9,28 @@ import { withRouter } from 'react-router-dom'
 
 
 class Home extends Component  {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      upvotes: props.user.stocks.map(stock => ({symbol: stock.symbol, votes: 0}))
+    }
+  }
+
   componentDidMount() {
     this.props.actions.fetchStocksCurrentData(this.props.user.stocks)
   }
 
   render() {
     let stocksData = []
+    let mergedData = []
     if (this.props.stocks.currentData) {
       stocksData = this.props.stocks.currentData
+      const upvotes = this.state.upvotes
+      stocksData.forEach((stock, i) => {
+        mergedData.push(Object.assign({}, stock, upvotes[i]))
+      })
     }
     let historyData = []
     if (this.props.stocks.historyData) {
@@ -27,7 +41,7 @@ class Home extends Component  {
       <div className="container-fluid" >
       <div id="Home" className="row">
         <div className="col-sm-8" >
-        <CurrentTable stocks={stocksData} fetchHistory={this.props.actions.fetchStockHistory} />
+        <CurrentTable stocks={mergedData} fetchHistory={this.props.actions.fetchStockHistory} />
         </div>
         <div className="col-sm-4 offset-sm-8" style={{position:'fixed'}}>
         <PriceHistory historyData={historyData} display={this.props.stocks.showHistory} />

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CurrentTable from '../components/CurrentTable'
 import PriceHistory from '../components/PriceHistory'
 import * as actions from '../actions/stockActions'
+import { upvoteStock } from '../actions/userActions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router-dom'
@@ -31,6 +32,14 @@ class Home extends Component  {
     })
   }
 
+  upvoteTest = () => {
+    const data = {
+      username: this.props.user.username,
+      symbol: 'AAPL'
+    }
+    this.props.upvoteStock(data)
+  }
+
   render() {
     let stocksData = []
     let mergedData = []
@@ -49,6 +58,7 @@ class Home extends Component  {
 
     return (
       <div className="container-fluid" >
+      <button onClick={this.upvoteTest}>Try me</button>
       <div id="Home" className="row">
         <div className="col-sm-8" >
         <CurrentTable stocks={mergedData} fetchHistory={this.props.actions.fetchStockHistory} handleUpvote={this.handleUpvote} />
@@ -71,7 +81,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return ({
-    actions: bindActionCreators(actions, dispatch)
+    actions: bindActionCreators(actions, dispatch),
+    upvoteStock: bindActionCreators(upvoteStock, dispatch)
   })
 }
 

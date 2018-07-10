@@ -134,7 +134,7 @@ export const addStocks = (values) => {
   }
 }
 
-export const upvoteStock = () => {
+export const upvoteStock = (values) => {
   return (dispatch) => {
     dispatch({type: 'ATTEMPT_UPVOTE'})
     return fetch('/api/upvote', {

@@ -1,3 +1,4 @@
+require 'pry'
 class Api::UsersController < ApplicationController
 
   def create
@@ -24,9 +25,9 @@ class Api::UsersController < ApplicationController
    def upvote
      user = User.find_by(username: params[:user][:username])
      stock = Stock.find_or_create_by(symbol: params[:stock][:symbol])
-     @userstock = Userstock.where(user_id: user.id, stock_id: stock.id)
+     @userstock = Userstock.where(user_id: user.id, stock_id: stock.id).first
      if @userstock
-       @userstock.upvotes += 1
+       @userstock.increment!(:upvotes)
        render json: @userstock, status: :created
      else
        render json: @user.stocks, status: :unprocessable_entity

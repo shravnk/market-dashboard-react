@@ -13,9 +13,6 @@ class Home extends Component  {
 
   constructor(props) {
     super(props);
-    this.state = {
-      upvotes: props.user.stocks.map(stock => ({symbol: stock.symbol, voteCount: 0}))
-    }
   }
 
   componentDidMount() {
@@ -24,18 +21,9 @@ class Home extends Component  {
 
   handleUpvote = (e, symbol) => {
     e.stopPropagation()
-    let upvotes = [...this.state.upvotes]
-    let upvote = upvotes.find(stock => stock.symbol === symbol)
-    upvote.voteCount += 1
-    this.setState({
-      upvotes: upvotes
-    })
-  }
-
-  upvoteTest = () => {
     const data = {
       username: this.props.user.username,
-      symbol: 'AAPL'
+      symbol: symbol
     }
     this.props.upvoteStock(data)
   }

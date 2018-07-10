@@ -22,7 +22,6 @@ class Home extends Component  {
   }
 
   handleUpvote = (e, symbol) => {
-    debugger
     e.stopPropagation()
     let upvotes = [...this.state.upvotes]
     let upvote = upvotes.find(stock => stock.symbol === symbol)

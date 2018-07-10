@@ -45,9 +45,9 @@ class Home extends Component  {
     let mergedData = []
     if (this.props.stocks.currentData) {
       stocksData = this.props.stocks.currentData
-      const upvotes = this.state.upvotes
+      const currentStocks = this.props.user.stocks
       stocksData.forEach((stock, i) => {
-        mergedData.push(Object.assign({}, stock, upvotes[i]))
+        mergedData.push(Object.assign({}, stock, {voteCount: currentStocks[i].upvotes}))
       })
     }
 

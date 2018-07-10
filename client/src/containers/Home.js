@@ -12,7 +12,6 @@ class Home extends Component  {
 
   constructor(props) {
     super(props);
-
     this.state = {
       upvotes: props.user.stocks.map(stock => ({symbol: stock.symbol, voteCount: 0}))
     }
@@ -22,7 +21,8 @@ class Home extends Component  {
     this.props.actions.fetchStocksCurrentData(this.props.user.stocks)
   }
 
-  handleUpvote = () => {
+  handleUpvote = (e) => {
+    e.stopPropagation()
     let upvotes = [...this.state.upvotes]
     let upvote = {...upvotes[0]}
     upvote.voteCount = 1
@@ -54,8 +54,7 @@ class Home extends Component  {
       <div className="container-fluid" >
       <div id="Home" className="row">
         <div className="col-sm-8" >
-        <button onClick={this.handleUpvote}>Click me</button>
-        <CurrentTable stocks={mergedData} fetchHistory={this.props.actions.fetchStockHistory} />
+        <CurrentTable stocks={mergedData} fetchHistory={this.props.actions.fetchStockHistory} handleUpvote={this.handleUpvote} />
         </div>
         <div className="col-sm-4 offset-sm-8" style={{position:'fixed'}}>
         <PriceHistory historyData={historyData} display={this.props.stocks.showHistory} />

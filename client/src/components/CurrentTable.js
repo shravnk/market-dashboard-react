@@ -21,7 +21,7 @@ const CurrentTable = ({stocks, fetchHistory, history}) => {
       <TableHeaderColumn dataField='changePercent' dataSort>% Change</TableHeaderColumn>
       <TableHeaderColumn dataField='high'>High</TableHeaderColumn>
       <TableHeaderColumn dataField='low'>Low</TableHeaderColumn>
-      <TableHeaderColumn dataField='votes'>Votes</TableHeaderColumn>
+      <TableHeaderColumn dataField='voteCount'>Votes</TableHeaderColumn>
     </BootstrapTable>
     </div>
 

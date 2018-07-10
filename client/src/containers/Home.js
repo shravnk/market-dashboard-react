@@ -14,12 +14,24 @@ class Home extends Component  {
     super(props);
 
     this.state = {
-      upvotes: props.user.stocks.map(stock => ({symbol: stock.symbol, votes: 0}))
+      upvotes: props.user.stocks.map(stock => ({symbol: stock.symbol, voteCount: 0}))
     }
   }
 
   componentDidMount() {
     this.props.actions.fetchStocksCurrentData(this.props.user.stocks)
+  }
+
+  handleUpvote = () => {
+    let upvotes = [...this.state.upvotes]
+    let upvote = {...upvotes[0]}
+    upvote.voteCount = 1
+    upvotes[0] = upvote
+    this.setState({
+      upvotes: upvotes
+    })
+
+
   }
 
   render() {
@@ -32,6 +44,7 @@ class Home extends Component  {
         mergedData.push(Object.assign({}, stock, upvotes[i]))
       })
     }
+
     let historyData = []
     if (this.props.stocks.historyData) {
       historyData = this.props.stocks.historyData
@@ -41,6 +54,7 @@ class Home extends Component  {
       <div className="container-fluid" >
       <div id="Home" className="row">
         <div className="col-sm-8" >
+        <button onClick={this.handleUpvote}>Click me</button>
         <CurrentTable stocks={mergedData} fetchHistory={this.props.actions.fetchStockHistory} />
         </div>
         <div className="col-sm-4 offset-sm-8" style={{position:'fixed'}}>

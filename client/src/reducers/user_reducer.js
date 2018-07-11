@@ -7,13 +7,21 @@ export default function UserReducer(state = {auth_success: false, symbols: []}, 
       } else {
         return Object.assign({}, state, action.payload)
       }
-
     case 'LOGIN':
       if (action.payload.auth_success === true) {
         return Object.assign({}, action.payload)
       } else {
         return Object.assign({}, state, action.payload)
       }
+    case 'UPVOTE_SUCCESS':
+      const symbol = action.payload.stock.symbol
+      return {
+          ...state,
+          stocks: state.stocks.map(
+              (stock, i) => stock.symbol === symbol ? {...stock, upvotes: action.payload.stock.upvotes}
+                                      : stock
+          )
+       }
     case 'LOGOUT':
       return Object.assign({}, {auth_success: false}, action.payload)
     case 'ADD_STOCKS':

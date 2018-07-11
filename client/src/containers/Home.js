@@ -46,7 +46,6 @@ class Home extends Component  {
 
     return (
       <div className="container-fluid" >
-      <button onClick={this.upvoteTest}>Try me</button>
       <div id="Home" className="row">
         <div className="col-sm-8" >
         <CurrentTable stocks={mergedData} fetchHistory={this.props.actions.fetchStockHistory} handleUpvote={this.handleUpvote} />

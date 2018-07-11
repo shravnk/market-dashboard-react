@@ -28,9 +28,9 @@ class Api::UsersController < ApplicationController
      @userstock = Userstock.where(user_id: user.id, stock_id: stock.id).first
      if @userstock
        @userstock.increment!(:upvotes)
-       render json: @userstock, status: :created
+       render json: @userstock, status: :created, include: :stock
      else
-       render json: @user.stocks, status: :unprocessable_entity
+       render json: @userstock, status: :unprocessable_entity
      end
    end
 

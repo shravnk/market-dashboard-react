@@ -163,7 +163,8 @@ export const upvoteStock = (values) => {
         } else {
           response.json()
           .then(upvoteResponse => {
-            let upvoteAttempt = Object.assign({}, {stocks: upvoteResponse, message: `Succesfully upvoted`})
+            const stock_with_vote = Object.assign({}, upvoteResponse.stock, {upvotes: upvoteResponse.upvotes})
+            let upvoteAttempt = Object.assign({}, {stock: stock_with_vote, message: `Succesfully upvoted`})
             dispatch({
               type: 'UPVOTE_SUCCESS',
               payload: upvoteAttempt

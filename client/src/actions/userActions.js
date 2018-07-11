@@ -124,7 +124,7 @@ export const addStocks = (values) => {
         } else {
           response.json()
           .then(addStockResponse => {
-            let addStockAttempt = Object.assign({}, {stocks: addStockResponse, message: `Succesfully added stock  ${values.symbol}`})
+            let addStockAttempt = Object.assign({}, {stock: addStockResponse, message: `Succesfully added stock  ${values.symbol}`})
             dispatch({
               type: 'ADD_STOCKS',
               payload: addStockAttempt

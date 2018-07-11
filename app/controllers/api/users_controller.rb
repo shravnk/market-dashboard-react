@@ -16,7 +16,7 @@ class Api::UsersController < ApplicationController
      @stock = Stock.find_or_create_by(symbol: params[:stock][:symbol])
      if @user && @stock
        @user.stocks << @stock
-       render json: @user.stocks, status: :created
+       render json: @stock, status: :created
      else
        render json: @user.stocks, status: :unprocessable_entity
      end

@@ -18,7 +18,7 @@ export default function UserReducer(state = {auth_success: false, symbols: []}, 
       return {
           ...state,
           stocks: state.stocks.map(
-              (stock, i) => stock.symbol === symbol ? {...stock, upvotes: action.payload.stock.upvotes}
+              (stock) => stock.symbol === symbol ? {...stock, upvotes: action.payload.stock.upvotes}
                                                     : stock
               )
             }

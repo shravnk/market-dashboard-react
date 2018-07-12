@@ -31,7 +31,7 @@ class Home extends Component  {
   render() {
     let stocksData = []
     let mergedData = []
-    if (this.props.stocks.currentData !== undefined && this.props.stocks.currentData.length > 0 ) {
+    if (this.props.stocks.currentData !== undefined && this.props.stocks.currentData.length > 0 && this.props.user.stocks !== undefined && this.props.user.stocks.length > 0) {
       stocksData = this.props.stocks.currentData
       const currentStocks = this.props.user.stocks
       stocksData.forEach((stock, i) => {

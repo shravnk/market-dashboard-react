@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_20_211326) do
+ActiveRecord::Schema.define(version: 2018_07_10_182245) do
 
   create_table "stocks", force: :cascade do |t|
     t.string "symbol"
@@ -18,18 +18,21 @@ ActiveRecord::Schema.define(version: 2018_06_20_211326) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "stocks_users", id: false, force: :cascade do |t|
-    t.integer "stock_id", null: false
-    t.integer "user_id", null: false
-    t.index ["stock_id"], name: "index_stocks_users_on_stock_id"
-    t.index ["user_id"], name: "index_stocks_users_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "userstocks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "stock_id"
+    t.integer "upvotes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_id"], name: "index_userstocks_on_stock_id"
+    t.index ["user_id"], name: "index_userstocks_on_user_id"
   end
 
 end

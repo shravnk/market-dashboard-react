@@ -19,13 +19,13 @@ export default function UserReducer(state = {auth_success: false, symbols: []}, 
           ...state,
           stocks: state.stocks.map(
               (stock, i) => stock.symbol === symbol ? {...stock, upvotes: action.payload.stock.upvotes}
-                                      : stock
-          )
-       }
+                                                    : stock
+              )
+            }
     case 'LOGOUT':
       return Object.assign({}, {auth_success: false}, action.payload)
     case 'ADD_STOCKS':
-      return Object.assign({}, state, {stocks: [...state.stocks, action.payload.stock], messageSuccess: action.payload.message})
+      return Object.assign({}, state, {stocks: [...state.stocks, {...action.payload.stock, upvotes: 0}], messageSuccess: action.payload.message})
     case 'DELETE_MESSAGE':
       return Object.assign({}, state, {messageSuccess: ''})
     default:

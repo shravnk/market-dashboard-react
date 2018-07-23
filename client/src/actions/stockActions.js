@@ -48,3 +48,14 @@ export function fetchStockHistory(symbol) {
       })
     }
 }
+
+export function fetchGainersData() {
+  const url = `https://api.iextrading.com/1.0/stock/market/list/gainers`
+  return (dispatch) => {
+    dispatch({type: 'LOADING_GAINER_DATA'})
+    return fetch(url).then(response => {
+      return response.json()}).then(responseJSON => {
+        dispatch({type: 'GAINER_DATA_SUCCESS', payload: responseJSON})
+      })
+    }
+}

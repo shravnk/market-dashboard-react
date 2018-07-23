@@ -28,6 +28,19 @@ class Home extends Component  {
     this.props.upvoteStock(data)
   }
 
+  onTest = () => {
+    console.log('A')
+    fetch('https://api.iextrading.com/1.0/stock/market/batch?symbols=AAPL&types=quote')
+    .then(response => {
+      console.log('B')
+      return response.json()
+    })
+    .then(data => {
+      console.log('C')
+    })
+    console.log('D')
+  }
+
   render() {
     let stocksData = []
     let mergedData = []
@@ -46,6 +59,7 @@ class Home extends Component  {
 
     return (
       <div className="container-fluid" >
+      <button onClick={this.onTest}>Test</button>
       <div id="Home" className="row">
         <div className="col-sm-8" >
         <CurrentTable stocks={mergedData} fetchHistory={this.props.actions.fetchStockHistory} handleUpvote={this.handleUpvote} />

@@ -22,6 +22,12 @@ const NavBar = ({currentUser, logout}) => {
           </NavLink>
           <NavLink
             style={{ marginRight: '10px' }}
+            to="/overview"
+          >
+            Market Overview
+          </NavLink>
+          <NavLink
+            style={{ marginRight: '10px' }}
             to="/manage"
           >
             Manage Account

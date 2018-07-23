@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Home from './containers/Home'
+import MarketOverview from './containers/MarketOverview'
 import './App.css';
 import KeyStats from './containers/KeyStats'
 import UserForm from './containers/UserForm'
@@ -21,6 +22,7 @@ class App extends Component {
             <Redirect from="/login" exact to="/home"/>
             <Redirect from="/signup" exact to="/home"/>
             <Route exact path={`/home`} component={Home} />
+            <Route exact path={`/overview`} component={MarketOverview} />
             <Route path={`/manage`} component={StocksManager} />
             <Route path={`/stocks/:symbol`} component={KeyStats} />
 

@@ -18,12 +18,6 @@ ActiveRecord::Schema.define(version: 2018_06_20_211326) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "stocks_users", id: false, force: :cascade do |t|
-    t.integer "stock_id", null: false
-    t.integer "user_id", null: false
-    t.index ["stock_id"], name: "index_stocks_users_on_stock_id"
-    t.index ["user_id"], name: "index_stocks_users_on_user_id"
-  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"

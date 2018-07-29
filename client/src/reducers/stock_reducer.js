@@ -49,6 +49,19 @@ export default function stockReducer(state = {loading: false, showHistory: false
           chgPct: (stock.changePercent * 100).toFixed(2)
         }))
         return Object.assign({}, state, {loading: false, loserData: loserData})
+    case 'FETCH_INDEX_DATA':
+          const indexResponse = Object.values(action.payload)
+          let indexData = []
+          if (indexResponse === undefined || indexResponse.length == 0) {
+            indexData = []
+          } else {
+            indexData = indexResponse.map((stock) => ({
+              symbol: stock.quote.symbol,
+              latestPrice: stock.quote.latestPrice.toFixed(2),
+              changePercent: (stock.quote.changePercent * 100).toFixed(2)
+              }))
+          }
+          return Object.assign({}, state, {loading: false, indexData: indexData})
     default:
         return state
   }

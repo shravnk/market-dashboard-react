@@ -38,8 +38,8 @@ export function fetchStockDetailedData(symbol) {
     }
 }
 
-export function fetchStockHistory(symbol) {
-  const url = `https://api.iextrading.com/1.0/stock/${symbol}/chart/5d`
+export function fetchStockHistory(symbol, period) {
+  const url = `https://api.iextrading.com/1.0/stock/${symbol}/chart/${period}`
   return (dispatch) => {
     dispatch({type: 'LOADING_HISTORY_DATA'})
     return fetch(url).then(response => {
@@ -68,5 +68,21 @@ export function fetchLosersData() {
       return response.json()}).then(responseJSON => {
         dispatch({type: 'LOSER_DATA_SUCCESS', payload: responseJSON})
       })
+    }
+}
+
+export function fetchIndicesCurrentData() {
+  const indexList = ["DIA", "SPY", "IWM", "OILB", ]
+  const url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${indexList}&types=quote`
+  return (dispatch) => {
+    dispatch({type: 'LOADING_INDEX_DATA'})
+    return fetch(url)
+    .then(response => {
+        response.json()
+          .then(responseJSON => {
+            dispatch({type: 'FETCH_INDEX_DATA', payload: responseJSON
+            })
+          })
+        })
     }
 }

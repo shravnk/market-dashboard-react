@@ -49,6 +49,16 @@ export function fetchStockHistory(symbol, period) {
     }
 }
 
+export function fetchIndexHistory() {
+  const url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=dia,spy&types=chart&range=1d`
+  return (dispatch) => {
+    return fetch(url).then(response => {
+      return response.json()}).then(responseJSON => {
+        dispatch({type: 'INDEX_HISTORY_SUCCESS', payload: responseJSON})
+      })
+    }
+}
+
 export function fetchGainersData() {
   const url = `https://api.iextrading.com/1.0/stock/market/list/gainers`
   return (dispatch) => {

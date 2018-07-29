@@ -62,6 +62,8 @@ export default function stockReducer(state = {loading: false, showHistory: false
               }))
           }
           return Object.assign({}, state, {loading: false, indexData: indexData})
+    case 'INDEX_HISTORY_SUCCESS':
+      return Object.assign({}, state, {loading: false, indexHistory: action.payload})
     default:
         return state
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Gainers from '../components/Gainers'
 import Losers from '../components/Losers'
 import IndexCurrent from '../components/IndexCurrent'
+import IndexHistory from '../components/IndexHistory'
 import * as actions from '../actions/stockActions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -15,10 +16,11 @@ class MarketOverview extends Component  {
     this.props.actions.fetchGainersData()
     this.props.actions.fetchLosersData()
     this.props.actions.fetchIndicesCurrentData()
+    this.props.actions.fetchIndexHistory()
   }
 
   render() {
-    const loading = this.props.gainers && this.props.gainers.length === 0 && this.props.losers && this.props.losers.length === 0
+    const loading = this.props.indexHistory === undefined || this.props.indexHistory.length == 0
     if (loading) {
       return (
         <p>Loading</p>
@@ -29,7 +31,9 @@ class MarketOverview extends Component  {
         <div id="indices" className="row" >
           <div className="col-sm-4" >
             <IndexCurrent indices={this.props.indices} />
-            // <IndexHistory indexData=
+          </div>
+          <div className="col-sm-8" >
+            <IndexHistory indexData={this.props.indexHistory.DIA.chart} />
           </div>
         </div>
         <div id="Movers" className="row">
@@ -50,7 +54,8 @@ function mapStateToProps(state) {
   return ({
     gainers: state.stocks.gainerData,
     losers: state.stocks.loserData,
-    indices: state.stocks.indexData
+    indices: state.stocks.indexData,
+    indexHistory: state.stocks.indexHistory
   })
 }
 

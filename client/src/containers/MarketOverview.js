@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Gainers from '../components/Gainers'
+import Losers from '../components/Losers'
 import * as actions from '../actions/stockActions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -11,10 +12,11 @@ class MarketOverview extends Component  {
 
   componentDidMount() {
     this.props.actions.fetchGainersData()
+    this.props.actions.fetchLosersData()
   }
 
   render() {
-    const loading = this.props.gainers && this.props.gainers.length === 0
+    const loading = this.props.gainers && this.props.gainers.length === 0 && this.props.losers && this.props.losers.length === 0
     if (loading) {
       return (
         <p>Loading</p>
@@ -23,7 +25,12 @@ class MarketOverview extends Component  {
     return (
       <div className="container-fluid" >
       <div id="Overview" className="row">
+        <div className="col-sm-6" >
         <Gainers gainers={this.props.gainers} />
+        </div>
+        <div className="col-sm-6" >
+        <Losers losers={this.props.losers} />
+        </div>
       </div>
       </div>
     )
@@ -33,7 +40,8 @@ class MarketOverview extends Component  {
 
 function mapStateToProps(state) {
   return ({
-    gainers: state.stocks.gainerData
+    gainers: state.stocks.gainerData,
+    losers: state.stocks.loserData
   })
 }
 

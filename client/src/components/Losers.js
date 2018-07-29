@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import { withRouter } from 'react-router-dom';
 
-const Gainers = ({gainers, history}) => {
+const Losers = ({losers, history}) => {
   const options = {
    onRowClick: function(row){
      history.push(`/stocks/${row.symbol}`)
@@ -13,7 +13,7 @@ const Gainers = ({gainers, history}) => {
   return (
     <div className="container-fluid" >
       <div className="row" >
-      <BootstrapTable data={gainers} hover={true} options={options}>
+      <BootstrapTable data={losers} hover={true} options={options}>
         <TableHeaderColumn isKey={true} dataField='symbol' dataSort>Symbol</TableHeaderColumn>
         <TableHeaderColumn dataField='latestPrice' dataSort>Last Price</TableHeaderColumn>
         <TableHeaderColumn dataField='chgPct' dataSort sortFunc={ numericSortFunc }>% Chg</TableHeaderColumn>
@@ -33,4 +33,4 @@ function numericSortFunc(a, b, order) {
   }
 }
 
-export default withRouter(Gainers);
+export default withRouter(Losers);

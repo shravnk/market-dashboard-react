@@ -59,3 +59,14 @@ export function fetchGainersData() {
       })
     }
 }
+
+export function fetchLosersData() {
+  const url = `https://api.iextrading.com/1.0/stock/market/list/losers`
+  return (dispatch) => {
+    dispatch({type: 'LOADING_LOSER_DATA'})
+    return fetch(url).then(response => {
+      return response.json()}).then(responseJSON => {
+        dispatch({type: 'LOSER_DATA_SUCCESS', payload: responseJSON})
+      })
+    }
+}

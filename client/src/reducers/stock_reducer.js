@@ -1,4 +1,4 @@
-export default function stockReducer(state = {loading: false, showHistory: false, gainerData: []}, action) {
+export default function stockReducer(state = {loading: false, showHistory: false, gainerData: [], loserData: []}, action) {
   switch (action.type) {
     case 'LOADING_CURRENT_DATA':
       return Object.assign({}, state, {loading: true})
@@ -38,6 +38,17 @@ export default function stockReducer(state = {loading: false, showHistory: false
         chgPct: (stock.changePercent * 100).toFixed(2)
       }))
       return Object.assign({}, state, {loading: false, gainerData: gainerData})
+    case 'LOSER_DATA_SUCCESS':
+        const loserData = action.payload.map((stock) => ({
+          symbol: stock.symbol,
+          companyName: stock.companyName,
+          latestPrice: stock.latestPrice,
+          open: stock.open,
+          high: stock.high,
+          low: stock.low,
+          chgPct: (stock.changePercent * 100).toFixed(2)
+        }))
+        return Object.assign({}, state, {loading: false, loserData: loserData})
     default:
         return state
   }

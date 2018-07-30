@@ -49,6 +49,16 @@ export function fetchStockHistory(symbol, period) {
     }
 }
 
+export function fetchStockCurrentPrice(symbol) {
+  const url = `https://api.iextrading.com/1.0/stock/${symbol}/price`
+  return (dispatch) => {
+    return fetch(url).then(response => {
+      return response.json()}).then(responseJSON => {
+        dispatch({type: 'FETCH_CURRENT_PRICE', payload: responseJSON})
+      })
+    }
+}
+
 export function fetchIndexHistory() {
   const url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=spy,qqq,iwm,efa,eem,fxi,vxx&types=company,chart&range=1d`
   return (dispatch) => {

@@ -12,6 +12,7 @@ class KeyStats extends Component {
   componentDidMount() {
     this.props.actions.fetchStockDetailedData(this.props.symbol)
     this.props.actions.fetchStockHistory(this.props.symbol, '1D')
+    this.props.actions.fetchStockCurrentPrice(this.props.symbol)
   }
 
   render() {
@@ -20,7 +21,7 @@ class KeyStats extends Component {
       stockData = this.props.stocks.detailedData
       return (
         <div className="container">
-          <h3 className="text-left">{stockData.companyName} ({stockData.symbol})</h3>
+          <h3 className="text-left">{stockData.companyName} ({stockData.symbol})  -   ${this.props.stocks.currentStockPrice}</h3>
           <SelectDateRange symbol={this.props.stocks.detailedData.symbol} setRange={this.props.actions.fetchStockHistory}/>
           <div className="row" >
             <div className="col-md-5" >

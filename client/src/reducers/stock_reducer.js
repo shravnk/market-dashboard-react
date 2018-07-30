@@ -69,6 +69,8 @@ export default function stockReducer(state = {loading: false, showHistory: false
       return Object.assign({}, state, {loading: false, indexHistory: action.payload})
     case 'INDEX_HISTORY_CHANGE':
       return Object.assign({}, state, {currentIndexName: action.payload})
+    case 'FETCH_CURRENT_PRICE':
+      return Object.assign({}, state, {currentStockPrice: action.payload})
     default:
         return state
   }

@@ -44,7 +44,7 @@ export function fetchStockHistory(symbol, period) {
     dispatch({type: 'LOADING_HISTORY_DATA'})
     return fetch(url).then(response => {
       return response.json()}).then(responseJSON => {
-        dispatch({type: 'FETCH_HISTORY_DATA', payload: responseJSON, period: period})
+        dispatch({type: 'FETCH_HISTORY_DATA', payload: responseJSON, period: period, symbol: symbol})
       })
     }
 }

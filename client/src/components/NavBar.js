@@ -18,7 +18,7 @@ const NavBar = ({currentUser, logout}) => {
             style={{ marginRight: '10px' }}
             to="/home"
           >
-            Home
+            My Stocks
           </NavLink>
           <NavLink
             style={{ marginRight: '10px' }}
@@ -30,7 +30,7 @@ const NavBar = ({currentUser, logout}) => {
             style={{ marginRight: '10px' }}
             to="/manage"
           >
-            Manage Account
+            Add Stocks
           </NavLink>
 
           <NavLink

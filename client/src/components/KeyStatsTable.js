@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import { Link } from 'react-router-dom';
 
-const KeyStatsTable = ({stockData}) => {
+const KeyStatsTable = ({stockData, display}) => {
+
+  if (display==true && stockData) {
   const formattedStockData = formatStockDetails(stockData)
   return (
       <div className="col-md-10">
@@ -38,6 +40,11 @@ const KeyStatsTable = ({stockData}) => {
         </table>
       </div>
   )
+} else {
+  return (
+    <div></div>
+  )
+}
 }
 
 export function formatStockDetails(stockData) {

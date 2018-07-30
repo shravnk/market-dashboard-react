@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CurrentTable from '../components/CurrentTable'
 import PriceHistory from '../components/PriceHistory'
+import KeyStatsTable from '../components/KeyStatsTable'
 import * as actions from '../actions/stockActions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -16,8 +17,11 @@ class Home extends Component  {
 
   render() {
     let stocksData = []
+    let sectorList = {}
     if (this.props.stocks.currentData) {
       stocksData = this.props.stocks.currentData
+      const sectorArr = [...new Set(stocksData.map(s => s.sector))]
+      sectorList = arrayToObject(sectorArr)
     }
     let historyData = []
     if (this.props.stocks.historyData) {
@@ -28,10 +32,12 @@ class Home extends Component  {
       <div className="container-fluid" >
       <div id="Home" className="row">
         <div className="col-md-8" >
-        <CurrentTable stocks={stocksData} fetchHistory={this.props.actions.fetchStockHistory} clearHistory={this.props.actions.clearHistoryData}/>
+          <CurrentTable stocks={stocksData} sectors={sectorList} fetchHistory={this.props.actions.fetchStockHistory}  clearHistory={this.props.actions.clearHistoryData}
+          fetchData={this.props.actions.fetchStockDetailedData}/>
         </div>
-        <div className="col-md-4 offset-sm-8" style={{position:'fixed'}}>
-        <PriceHistory historyData={historyData} display={this.props.stocks.showHistory} />
+        <div className="col-md-4 offset-md-8 text-center" style={{position:'fixed'}}>
+          <br/>
+          <PriceHistory historyData={historyData} symbol={this.props.stocks.historySymbol} display={this.props.stocks.showHistory} />
         </div>
       </div>
       </div>
@@ -51,6 +57,12 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(actions, dispatch)
   })
 }
+
+const arrayToObject = (array) =>
+   array.reduce((obj, item) => {
+     obj[item] = item
+     return obj
+   }, {})
 
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home))

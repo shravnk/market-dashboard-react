@@ -24,7 +24,7 @@ class KeyStats extends Component {
           <SelectDateRange symbol={this.props.stocks.detailedData.symbol} setRange={this.props.actions.fetchStockHistory}/>
           <div className="row" >
             <div className="col-md-5" >
-              <KeyStatsTable stockData={stockData} formatter={this.props.actions.formatData}/>
+              <KeyStatsTable stockData={stockData} display={true}/>
             </div>
             <div className="col-md-7" >
               <StockHistory historyData={this.props.stocks.historyData} period={this.props.stocks.historyPeriod}/>

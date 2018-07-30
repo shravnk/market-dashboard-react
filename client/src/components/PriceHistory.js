@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {Line} from 'react-chartjs-2'
 
-const PriceHistory = ({historyData, display}) => {
+const PriceHistory = ({historyData, symbol, display}) => {
 
   if(display) {
-    
+
     const historyValues = historyData.map(day => day.close)
     const historyLabels = historyData.map(day => day.date)
     const chartData = Object.assign({}, {labels: historyLabels, datasets: [{
@@ -18,6 +18,7 @@ const PriceHistory = ({historyData, display}) => {
     }
     return (
       <div>
+        <h6>{symbol}</h6>
         <Line data={chartData} options={chartOptions} />
       </div>
     )

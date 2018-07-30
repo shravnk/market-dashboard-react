@@ -13,11 +13,13 @@ const AddStocksForm = ({ currentUser, addStocks, message }) => {
       'username': currentUser
     }
     addStocks(data)
+    var form = document.getElementById("input-form");
+    form.reset();
   }
   return(
     <div>
       <h1>Add Stock</h1>
-        <form onSubmit={handleSubmit.bind(this)}>
+        <form id="input-form" onSubmit={handleSubmit.bind(this)}>
         <div>
           <label>Ticker:</label>
           <input type="text" ref = {node => this.symbol = node} />

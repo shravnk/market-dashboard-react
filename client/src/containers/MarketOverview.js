@@ -36,6 +36,7 @@ class MarketOverview extends Component  {
             <IndexHistory indexData={this.props.indexHistory[this.props.currentIndex]} />
           </div>
         </div>
+        <br/>
         <div id="Movers" className="row">
           <div className="col-md-6" >
             <h5>Best Performers</h5>

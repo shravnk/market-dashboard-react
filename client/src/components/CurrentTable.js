@@ -2,7 +2,7 @@ import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import { withRouter } from 'react-router-dom';
 
-const CurrentTable = ({stocks, fetchHistory, history}) => {
+const CurrentTable = ({stocks, fetchHistory, clearHistory, history}) => {
 
   const options = {
    onRowClick: function(row){
@@ -10,6 +10,9 @@ const CurrentTable = ({stocks, fetchHistory, history}) => {
    },
    onRowMouseOver: function(row){
      setTimeout(fetchHistory(row.symbol, '5d'), 100)
+   },
+   onRowMouseOut: function(row) {
+     clearHistory()
    },
    sortName: 'symbol',
    sortOrder: 'asc'

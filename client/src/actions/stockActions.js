@@ -44,7 +44,7 @@ export function fetchStockHistory(symbol, period) {
     dispatch({type: 'LOADING_HISTORY_DATA'})
     return fetch(url).then(response => {
       return response.json()}).then(responseJSON => {
-        dispatch({type: 'FETCH_HISTORY_DATA', payload: responseJSON})
+        dispatch({type: 'FETCH_HISTORY_DATA', payload: responseJSON, period: period})
       })
     }
 }
@@ -100,5 +100,11 @@ export function fetchIndicesCurrentData() {
 export function changeIndexDisplay(indexName) {
   return (dispatch) => {
     dispatch({type: 'INDEX_HISTORY_CHANGE', payload: indexName})
+  }
+}
+
+export function clearHistoryData () {
+  return (dispatch) => {
+    dispatch({type: 'CLEAR_HISTORY_DATA'})
   }
 }

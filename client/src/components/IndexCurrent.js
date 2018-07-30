@@ -15,7 +15,7 @@ const IndexCurrent = ({indices, changeIndexDisplay}) => {
       <div className="row" >
       <BootstrapTable data={indices} hover={true} options={options}>
         <TableHeaderColumn isKey={true} dataField='symbol' dataSort>ETF</TableHeaderColumn>
-        <TableHeaderColumn dataField='changePercent'>% Chg</TableHeaderColumn>
+        <TableHeaderColumn dataField='changePercent' dataSort>% Chg</TableHeaderColumn>
       </BootstrapTable>
       </div>
     </div>

@@ -11,6 +11,7 @@ import { withRouter } from 'react-router-dom'
 class Home extends Component  {
   componentDidMount() {
     this.props.actions.fetchStocksCurrentData(this.props.user.stocks)
+    this.props.actions.clearHistoryData()
   }
 
   render() {
@@ -27,7 +28,7 @@ class Home extends Component  {
       <div className="container-fluid" >
       <div id="Home" className="row">
         <div className="col-md-8" >
-        <CurrentTable stocks={stocksData} fetchHistory={this.props.actions.fetchStockHistory} />
+        <CurrentTable stocks={stocksData} fetchHistory={this.props.actions.fetchStockHistory} clearHistory={this.props.actions.clearHistoryData}/>
         </div>
         <div className="col-md-4 offset-sm-8" style={{position:'fixed'}}>
         <PriceHistory historyData={historyData} display={this.props.stocks.showHistory} />

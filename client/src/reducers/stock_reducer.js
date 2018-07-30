@@ -25,8 +25,10 @@ export default function stockReducer(state = {loading: false, showHistory: false
         return Object.assign({}, state, {loading: false, detailedData: action.payload})
     case 'LOADING_HISTORY_DATA':
         return Object.assign({}, state, {loading: true, showHistory: false, historyData: null})
+    case 'CLEAR_HISTORY_DATA':
+        return Object.assign({}, state, {showHistory: false, historyData: null})
     case 'FETCH_HISTORY_DATA':
-        return Object.assign({}, state, {loading: false, showHistory: true, historyData: action.payload})
+        return Object.assign({}, state, {loading: false, showHistory: true, historyData: action.payload, historyPeriod: action.period})
     case 'GAINER_DATA_SUCCESS':
       const gainerData = action.payload.map((stock) => ({
         symbol: stock.symbol,

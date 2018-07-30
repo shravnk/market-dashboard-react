@@ -1,29 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {fetchStockDetailedData} from '../actions/stockActions.js'
-import {formatStockDetails} from '../actions/stockActions'
+import * as actions from '../actions/stockActions'
 import KeyStatsTable from '../components/KeyStatsTable'
+import StockHistory from '../components/StockHistory'
+import SelectDateRange from '../components/SelectDateRange'
 
 
 class KeyStats extends Component {
 
   componentDidMount() {
-    this.props.fetchData(this.props.symbol)
+    this.props.actions.fetchStockDetailedData(this.props.symbol)
+    this.props.actions.fetchStockHistory(this.props.symbol, '1D')
   }
 
   render() {
     let stockData = {}
     if (this.props.stocks.detailedData) {
       stockData = this.props.stocks.detailedData
+      return (
+        <div className="container">
+          <h3 className="text-left">{stockData.companyName} ({stockData.symbol})</h3>
+          <SelectDateRange symbol={this.props.stocks.detailedData.symbol} setRange={this.props.actions.fetchStockHistory}/>
+          <div className="row" >
+            <div className="col-md-5" >
+              <KeyStatsTable stockData={stockData} formatter={this.props.actions.formatData}/>
+            </div>
+            <div className="col-md-7" >
+              <StockHistory historyData={this.props.stocks.historyData} period={this.props.stocks.historyPeriod}/>
+            </div>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <p>Loading...</p>
+      )
     }
-    return (
-      <div className="container">
-        <h3>{stockData.companyName}</h3>
-        <KeyStatsTable stockData={stockData} formatter={this.props.formatData}/>
-
-      </div>
-    )
   }
 }
 
@@ -34,10 +47,10 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({
-    fetchData: fetchStockDetailedData}
-    , dispatch)
+function mapDispatchToProps(dispatch) {
+  return ({
+    actions: bindActionCreators(actions, dispatch)
+  })
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(KeyStats)

@@ -1,4 +1,4 @@
-export default function stockReducer(state = {loading: false, showHistory: false, gainerData: [], loserData: []}, action) {
+export default function stockReducer(state = {loading: false, showHistory: false, gainerData: [], loserData: [], currentIndexName: 'DIA'}, action) {
   switch (action.type) {
     case 'LOADING_CURRENT_DATA':
       return Object.assign({}, state, {loading: true})
@@ -64,6 +64,8 @@ export default function stockReducer(state = {loading: false, showHistory: false
           return Object.assign({}, state, {loading: false, indexData: indexData})
     case 'INDEX_HISTORY_SUCCESS':
       return Object.assign({}, state, {loading: false, indexHistory: action.payload})
+    case 'INDEX_HISTORY_CHANGE':
+      return Object.assign({}, state, {currentIndexName: action.payload})
     default:
         return state
   }

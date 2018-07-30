@@ -23,17 +23,17 @@ class MarketOverview extends Component  {
     const loading = this.props.indexHistory === undefined || this.props.indexHistory.length == 0
     if (loading) {
       return (
-        <p>Loading</p>
+        <p>Loading...</p>
       )
     } else {
     return (
       <div className="container-fluid" >
         <div id="indices" className="row" >
           <div className="col-sm-4" >
-            <IndexCurrent indices={this.props.indices} />
+            <IndexCurrent indices={this.props.indices} changeIndexDisplay={this.props.actions.changeIndexDisplay}/>
           </div>
           <div className="col-sm-8" >
-            <IndexHistory indexData={this.props.indexHistory.DIA.chart} />
+            <IndexHistory indexData={this.props.indexHistory[this.props.currentIndex]} />
           </div>
         </div>
         <div id="Movers" className="row">
@@ -55,7 +55,8 @@ function mapStateToProps(state) {
     gainers: state.stocks.gainerData,
     losers: state.stocks.loserData,
     indices: state.stocks.indexData,
-    indexHistory: state.stocks.indexHistory
+    indexHistory: state.stocks.indexHistory,
+    currentIndex: state.stocks.currentIndexName
   })
 }
 

@@ -29,18 +29,18 @@ class MarketOverview extends Component  {
     return (
       <div className="container-fluid" >
         <div id="indices" className="row" >
-          <div className="col-sm-4" >
+          <div className="col-md-4" >
             <IndexCurrent indices={this.props.indices} changeIndexDisplay={this.props.actions.changeIndexDisplay}/>
           </div>
-          <div className="col-sm-8" >
+          <div className="col-md-8" >
             <IndexHistory indexData={this.props.indexHistory[this.props.currentIndex]} />
           </div>
         </div>
         <div id="Movers" className="row">
-          <div className="col-sm-6" >
+          <div className="col-md-6" >
             <Gainers gainers={this.props.gainers} />
           </div>
-          <div className="col-sm-6" >
+          <div className="col-md-6" >
             <Losers losers={this.props.losers} />
           </div>
         </div>

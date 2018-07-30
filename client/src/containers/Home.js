@@ -26,10 +26,10 @@ class Home extends Component  {
     return (
       <div className="container-fluid" >
       <div id="Home" className="row">
-        <div className="col-sm-8" >
+        <div className="col-md-8" >
         <CurrentTable stocks={stocksData} fetchHistory={this.props.actions.fetchStockHistory} />
         </div>
-        <div className="col-sm-4 offset-sm-8" style={{position:'fixed'}}>
+        <div className="col-md-4 offset-sm-8" style={{position:'fixed'}}>
         <PriceHistory historyData={historyData} display={this.props.stocks.showHistory} />
         </div>
       </div>

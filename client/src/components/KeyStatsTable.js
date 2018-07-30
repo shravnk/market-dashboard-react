@@ -7,7 +7,7 @@ const KeyStatsTable = ({stockData}) => {
   return (
     <div>
     <div className="row" >
-    <div className="col-sm-4">
+    <div className="col-md-4">
     <table className="table">
       <tr>
         <td>Market Cap</td>
@@ -23,7 +23,7 @@ const KeyStatsTable = ({stockData}) => {
       </tr>
     </table>
     </div>
-    <div className="col-sm-4">
+    <div className="col-md-4">
     <table className="table">
       <tr>
         <td>Beta</td>
@@ -47,7 +47,7 @@ const KeyStatsTable = ({stockData}) => {
       </tr>
       </table>
       </div>
-      <div className="col-sm-4">
+      <div className="col-md-4">
       <table className="table">
         <tr>
           <td>EPS (ttm)</td>

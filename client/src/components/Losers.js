@@ -7,8 +7,8 @@ const Losers = ({losers, history}) => {
    onRowClick: function(row){
      history.push(`/stocks/${row.symbol}`)
    },
-   defaultSortName: 'chgPct',
-   defaultSortType: 'desc'
+   sortName: "chgPct",
+   sortOrder: "asc"
   }
   return (
     <div className="container-fluid" >

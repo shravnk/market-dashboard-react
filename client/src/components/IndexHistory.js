@@ -11,6 +11,10 @@ const IndexHistory = ({indexData}) => {
   const chartOptions = {
     legend: {
       display: false
+    },
+    title: {
+      display: true,
+      text: indexData.company.companyName
     }
   }
   return (

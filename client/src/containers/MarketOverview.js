@@ -38,9 +38,11 @@ class MarketOverview extends Component  {
         </div>
         <div id="Movers" className="row">
           <div className="col-md-6" >
+            <h5>Best Performers</h5>
             <Gainers gainers={this.props.gainers} />
           </div>
           <div className="col-md-6" >
+            <h5>Worst Performers</h5>
             <Losers losers={this.props.losers} />
           </div>
         </div>

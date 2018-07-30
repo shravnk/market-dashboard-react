@@ -10,7 +10,9 @@ const CurrentTable = ({stocks, fetchHistory, history}) => {
    },
    onRowMouseOver: function(row){
      setTimeout(fetchHistory(row.symbol, '5d'), 100)
-   }
+   },
+   sortName: 'symbol',
+   sortOrder: 'asc'
   }
 
   return (
@@ -18,7 +20,7 @@ const CurrentTable = ({stocks, fetchHistory, history}) => {
     <BootstrapTable data={stocks} options={options} hover={true}>
       <TableHeaderColumn isKey={true} dataField='symbol' dataSort>Symbol</TableHeaderColumn>
       <TableHeaderColumn dataField='latestPrice'>Last Price</TableHeaderColumn>
-      <TableHeaderColumn dataField='changePercent' dataSort>% Change</TableHeaderColumn>
+      <TableHeaderColumn dataField='changePercent' dataSort sortFunc={ numericSortFunc }>% Change</TableHeaderColumn>
       <TableHeaderColumn dataField='high'>High</TableHeaderColumn>
       <TableHeaderColumn dataField='low'>Low</TableHeaderColumn>
     </BootstrapTable>
@@ -27,5 +29,11 @@ const CurrentTable = ({stocks, fetchHistory, history}) => {
 
   )
 }
-
+function numericSortFunc(a, b, order) {
+  if (order === 'desc') {
+    return Number(b.changePercent) - Number(a.changePercent);
+  } else {
+    return Number(a.changePercent) - Number(b.changePercent);
+  }
+}
 export default withRouter(CurrentTable);

@@ -1,28 +1,26 @@
 import fetch from 'isomorphic-fetch'
+import {handleCurrentData} from '../helpers/apiHandlers'
 
 export function fetchStocksCurrentData(stocks) {
   const stockList = stocks.map(stock => stock.symbol).join(",")
   const url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${stockList}&types=quote`
   return (dispatch) => {
-    dispatch({type: 'LOADING_CURRENT_DATA'})
+    dispatch({type: 'CURRENT_DATA_BEGIN'})
     return fetch(url)
-    .then(response => {
-      if (response.status !== 200) {
-        response.json()
-        .then(stocksResponseJson => {
-          let stocksAttempt = {message: stocksResponseJson[0]}
-          dispatch({
-            type: 'EMPTY_STOCK_LIST',
-            payload: stocksAttempt
-           })
-        })
-      } else {
-        response.json()
-          .then(responseJSON => {
-            dispatch({type: 'FETCH_CURRENT_DATA', payload: responseJSON
-            })
+      .then(response => {
+        if (response.status !== 200) {
+          response.json()
+          .then(stocksResponseJson => {
+            const stocksAttempt = {message: stocksResponseJson[0]}
+            dispatch({type: 'CURRENT_DATA_FAILURE', payload: stocksAttempt})
           })
-        }
+        } else {
+          response.json()
+            .then(responseJSON => {
+              const currentData = handleCurrentData(responseJSON)
+              dispatch({type: 'CURRENT_DATA_SUCCESS', payload: currentData})
+            })
+          }
       })
     }
   }
@@ -30,10 +28,10 @@ export function fetchStocksCurrentData(stocks) {
 export function fetchStockDetailedData(symbol) {
   const url = `https://api.iextrading.com/1.0/stock/${symbol}/stats`
   return (dispatch) => {
-    dispatch({type: 'LOADING_DETAILED_DATA'})
+    dispatch({type: 'STOCK_DETAILS_BEGIN'})
     return fetch(url).then(response => {
       return response.json()}).then(responseJSON => {
-        dispatch({type: 'FETCH_DETAILED_DATA', payload: responseJSON})
+        dispatch({type: 'STOCK_DETAILS_SUCCESS', payload: responseJSON})
       })
     }
 }
@@ -41,10 +39,10 @@ export function fetchStockDetailedData(symbol) {
 export function fetchStockHistory(symbol, period) {
   const url = `https://api.iextrading.com/1.0/stock/${symbol}/chart/${period}`
   return (dispatch) => {
-    dispatch({type: 'LOADING_HISTORY_DATA'})
+    dispatch({type: 'HISTORY_DATA_BEGIN'})
     return fetch(url).then(response => {
       return response.json()}).then(responseJSON => {
-        dispatch({type: 'FETCH_HISTORY_DATA', payload: responseJSON, period: period, symbol: symbol})
+        dispatch({type: 'HISTORY_DATA_SUCCESS', payload: responseJSON, period: period, symbol: symbol})
       })
     }
 }

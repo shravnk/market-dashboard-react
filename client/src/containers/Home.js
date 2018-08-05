@@ -7,12 +7,14 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router-dom'
 
-
-
 class Home extends Component  {
+
+  componentWillMount() {
+    this.props.actions.clearHistoryData()
+  }
   componentDidMount() {
     this.props.actions.fetchStocksCurrentData(this.props.user.stocks)
-    this.props.actions.clearHistoryData()
+
   }
 
   render() {
@@ -37,7 +39,8 @@ class Home extends Component  {
         </div>
         <div className="col-md-4 offset-md-8 text-center" style={{position:'fixed'}}>
           <br/>
-          <PriceHistory historyData={historyData} symbol={this.props.stocks.historySymbol} display={this.props.stocks.showHistory} />
+          <PriceHistory historyData={historyData} symbol={this.props.stocks.historySymbol} display={this.props.stocks.showHistory}
+          loading={this.props.stocks.historyLoading}/>
         </div>
       </div>
       </div>

@@ -2,18 +2,25 @@ import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import { withRouter } from 'react-router-dom';
 
-const CurrentTable = ({stocks, sectors, fetchHistory, fetchData, clearHistory, history}) => {
+const CurrentTable = ({stocks,
+                      sectors,
+                      fetchHistory,
+                      fetchData,
+                      clearHistory,
+                      history
+                      }) => {
 
   const options = {
    onRowClick: function(row){
+     fetchData(row.symbol)
      history.push(`/stocks/${row.symbol}`)
    },
    onRowMouseOver: function(row){
+     clearHistory()
      setTimeout(fetchHistory(row.symbol, '5d'), 100)
-     setTimeout(fetchData(row.symbol),50)
    },
    onRowMouseOut: function(row) {
-     clearHistory()
+     setTimeout(clearHistory(), 100)
    },
    sortName: 'symbol',
    sortOrder: 'asc'

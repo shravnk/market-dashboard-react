@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {Line} from 'react-chartjs-2'
 
-const PriceHistory = ({historyData, symbol, display}) => {
+const PriceHistory = ({historyData, symbol, display, loading}) => {
 
-  if(display) {
+  if (display && !loading) {
 
     const historyValues = historyData.map(day => day.close)
     const historyLabels = historyData.map(day => day.date)

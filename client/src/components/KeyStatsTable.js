@@ -7,34 +7,36 @@ const KeyStatsTable = ({stockData, display}) => {
   return (
       <div className="col-md-10">
         <table className="table text-left">
-          <tr>
-            <td>Market Cap</td>
-            <td className="text-right">$ {formattedStockData.marketcap} bn</td>
-          </tr>
-          <tr>
-            <td>Beta</td>
-            <td className="text-right">{formattedStockData.beta}</td>
-          </tr>
-          <tr>
-            <td>52 Week Range</td>
-            <td className="text-right">{formattedStockData.week52low} - {formattedStockData.week52high}</td>
-          </tr>
-          <tr>
-            <td>EPS (ttm)</td>
-            <td className="text-right">{formattedStockData.ttmEPS}</td>
-          </tr>
-          <tr>
-            <td>Dividend Rate (Yield)</td>
-            <td className="text-right">{formattedStockData.dividendRate} ({formattedStockData.dividendYield}) </td>
-          </tr>
-          <tr>
-            <td>Return on Equity</td>
-            <td className="text-right">{formattedStockData.returnOnEquity}</td>
-          </tr>
-          <tr>
-            <td>Price to Book</td>
-            <td className="text-right">{formattedStockData.priceToBook}</td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>Market Cap</td>
+              <td className="text-right">$ {formattedStockData.marketcap} bn</td>
+            </tr>
+            <tr>
+              <td>Beta</td>
+              <td className="text-right">{formattedStockData.beta}</td>
+            </tr>
+            <tr>
+              <td>52 Week Range</td>
+              <td className="text-right">{formattedStockData.week52low} - {formattedStockData.week52high}</td>
+            </tr>
+            <tr>
+              <td>EPS (ttm)</td>
+              <td className="text-right">{formattedStockData.ttmEPS}</td>
+            </tr>
+            <tr>
+              <td>Dividend Rate (Yield)</td>
+              <td className="text-right">{formattedStockData.dividendRate} ({formattedStockData.dividendYield}) </td>
+            </tr>
+            <tr>
+              <td>Return on Equity</td>
+              <td className="text-right">{formattedStockData.returnOnEquity}</td>
+            </tr>
+            <tr>
+              <td>Price to Book</td>
+              <td className="text-right">{formattedStockData.priceToBook}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
   )

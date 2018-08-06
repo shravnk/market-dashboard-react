@@ -6,7 +6,7 @@ const CurrentTable = ({stocks,
                       sectors,
                       fetchHistory,
                       fetchData,
-                      clearHistory,
+                      displayHistory,
                       history
                       }) => {
 
@@ -16,11 +16,13 @@ const CurrentTable = ({stocks,
      history.push(`/stocks/${row.symbol}`)
    },
    onRowMouseOver: function(row){
-     clearHistory()
      setTimeout(function() {fetchHistory(row.symbol, "5d")},100)
    },
-   onRowMouseOut: function(row) {
-     setTimeout(clearHistory(), 100)
+   onMouseLeave: function() {
+     displayHistory(false)
+   },
+   onMouseEnter: function() {
+     displayHistory(true)
    },
    sortName: 'symbol',
    sortOrder: 'asc'

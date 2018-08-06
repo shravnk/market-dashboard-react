@@ -7,12 +7,23 @@ import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router-dom'
 
 class Home extends Component  {
-
+  constructor () {
+    super()
+    this.state = {
+      displayHistory: true
+    }
+  }
   componentWillMount() {
-    this.props.actions.clearHistoryData()
+    this.props.actions.clearHistoryData( )
   }
   componentDidMount() {
     this.props.actions.fetchStocksCurrentData(this.props.user.stocks)
+  }
+
+  changeDisplay = (bool) => {
+    this.setState({
+      displayHistory: bool
+    })
   }
 
   render() {
@@ -32,12 +43,12 @@ class Home extends Component  {
       <div className="container-fluid" >
       <div id="Home" className="row">
         <div className="col-md-8" >
-          <CurrentTable stocks={stocksData} sectors={sectorList} fetchHistory={this.props.actions.fetchStockHistory}  clearHistory={this.props.actions.clearHistoryData}
+          <CurrentTable stocks={stocksData} sectors={sectorList} fetchHistory={this.props.actions.fetchStockHistory}  displayHistory={this.changeDisplay}
           fetchData={this.props.actions.fetchStockDetailedData}/>
         </div>
         <div className="col-md-4 offset-md-8 text-center" style={{position:'fixed'}}>
           <br/>
-          <PriceHistory historyData={historyData} symbol={this.props.stocks.historySymbol} display={this.props.stocks.showHistory}
+          <PriceHistory historyData={historyData} symbol={this.props.stocks.historySymbol} display={this.state.displayHistory}
           loading={this.props.stocks.historyLoading}/>
         </div>
       </div>

@@ -16,12 +16,14 @@ const SelectDateRange = ({symbol, setRange}) => {
       </div>
       <div className="col-md-4" >
         <table id="range-options" className="table table-sm table-bordered">
-          <tr>
-            <td style={styles} onClick={(e) => onCellClick(e)}>1D</td>
-            <td onClick={(e) => onCellClick(e)}>5D</td>
-            <td onClick={(e) => onCellClick(e)}>1M</td>
-            <td onClick={(e) => onCellClick(e)}>1Y</td>
-          </tr>
+          <tbody>
+            <tr>
+              <td style={styles} onClick={(e) => onCellClick(e)}>1D</td>
+              <td onClick={(e) => onCellClick(e)}>5D</td>
+              <td onClick={(e) => onCellClick(e)}>1M</td>
+              <td onClick={(e) => onCellClick(e)}>1Y</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>

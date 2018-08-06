@@ -1,5 +1,4 @@
 import React from 'react'
-import { signupUser } from '../actions/userActions'
 
 const SignupUser = ({ createUser }) => {
 

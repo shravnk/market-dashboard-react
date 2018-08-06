@@ -1,12 +1,11 @@
 import React from 'react';
 
-
 const SelectDateRange = ({symbol, setRange}) => {
 
   const onCellClick = (e) => {
     unhighlight()
     e.target.style.backgroundColor = "#b5ddc5"
-    setTimeout(setRange(symbol, e.target.innerHTML),100)
+    setRange(symbol, e.target.innerHTML)
   }
 
   const styles = {backgroundColor: '#b5ddc5'}

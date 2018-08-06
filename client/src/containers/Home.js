@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CurrentTable from '../components/CurrentTable'
 import PriceHistory from '../components/PriceHistory'
-import KeyStatsTable from '../components/KeyStatsTable'
 import * as actions from '../actions/stockActions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -14,7 +13,6 @@ class Home extends Component  {
   }
   componentDidMount() {
     this.props.actions.fetchStocksCurrentData(this.props.user.stocks)
-
   }
 
   render() {

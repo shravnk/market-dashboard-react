@@ -20,7 +20,7 @@ class MarketOverview extends Component  {
   }
 
   render() {
-    const loading = this.props.indexHistory === undefined || this.props.indexHistory.length == 0
+    const loading = this.props.indexHistory === undefined || this.props.indexHistory.length === 0
     if (loading) {
       return (
         <p>Loading...</p>

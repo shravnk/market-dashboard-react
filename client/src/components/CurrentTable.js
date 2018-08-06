@@ -17,7 +17,7 @@ const CurrentTable = ({stocks,
    },
    onRowMouseOver: function(row){
      clearHistory()
-     setTimeout(fetchHistory(row.symbol, '5d'), 100)
+     setTimeout(function() {fetchHistory(row.symbol, "5d")},100)
    },
    onRowMouseOut: function(row) {
      setTimeout(clearHistory(), 100)

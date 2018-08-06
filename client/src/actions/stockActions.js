@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import {handleCurrentData} from '../helpers/apiHandlers'
+import * as apiHandlers from '../helpers/apiHandlers'
 
 export function fetchStocksCurrentData(stocks) {
   const stockList = stocks.map(stock => stock.symbol).join(",")
@@ -17,7 +17,7 @@ export function fetchStocksCurrentData(stocks) {
         } else {
           response.json()
             .then(responseJSON => {
-              const currentData = handleCurrentData(responseJSON)
+              const currentData = apiHandlers.current(responseJSON)
               dispatch({type: 'CURRENT_DATA_SUCCESS', payload: currentData})
             })
           }
@@ -52,7 +52,7 @@ export function fetchStockCurrentPrice(symbol) {
   return (dispatch) => {
     return fetch(url).then(response => {
       return response.json()}).then(responseJSON => {
-        dispatch({type: 'FETCH_CURRENT_PRICE', payload: responseJSON})
+        dispatch({type: 'CURRENT_PRICE_SUCCESS', payload: responseJSON})
       })
     }
 }
@@ -73,7 +73,8 @@ export function fetchGainersData() {
     dispatch({type: 'LOADING_GAINER_DATA'})
     return fetch(url).then(response => {
       return response.json()}).then(responseJSON => {
-        dispatch({type: 'GAINER_DATA_SUCCESS', payload: responseJSON})
+        const gainerData = apiHandlers.movers(responseJSON)
+        dispatch({type: 'GAINER_DATA_SUCCESS', payload: gainerData})
       })
     }
 }
@@ -84,7 +85,8 @@ export function fetchLosersData() {
     dispatch({type: 'LOADING_LOSER_DATA'})
     return fetch(url).then(response => {
       return response.json()}).then(responseJSON => {
-        dispatch({type: 'LOSER_DATA_SUCCESS', payload: responseJSON})
+        const loserData = apiHandlers.movers(responseJSON)
+        dispatch({type: 'LOSER_DATA_SUCCESS', payload: loserData})
       })
     }
 }
@@ -98,7 +100,8 @@ export function fetchIndicesCurrentData() {
     .then(response => {
         response.json()
           .then(responseJSON => {
-            dispatch({type: 'FETCH_INDEX_DATA', payload: responseJSON
+            const indicesData = apiHandlers.indices(responseJSON)
+            dispatch({type: 'INDEX_DATA_SUCCESS', payload: indicesData
             })
           })
         })

@@ -1,8 +1,5 @@
 import React from 'react'
-import { loginUser } from '../actions/userActions'
-import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { bindActionCreators } from 'redux'
 
 const AddStocksForm = ({ currentUser, addStocks, message }) => {
 

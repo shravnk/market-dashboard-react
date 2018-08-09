@@ -21,6 +21,7 @@ class KeyStats extends Component {
       stockData = this.props.stocks.detailedData
       return (
         <div className="container">
+          <br/>
           <h3 className="text-left">{stockData.companyName} ({stockData.symbol})  -   ${this.props.stocks.currentStockPrice}</h3>
           <SelectDateRange symbol={this.props.stocks.detailedData.symbol} setRange={this.props.actions.fetchStockHistory}/>
           <div className="row" >

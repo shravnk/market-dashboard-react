@@ -36,7 +36,7 @@ const CurrentTable = ({stocks,
       <TableHeaderColumn dataField='changePercent' dataSort sortFunc={ numericSortFunc } dataAlign='right'>% Change</TableHeaderColumn>
       <TableHeaderColumn dataField='high' dataAlign='right'>High</TableHeaderColumn>
       <TableHeaderColumn dataField='low' dataAlign='right'>Low</TableHeaderColumn>
-      <TableHeaderColumn headerText={'Sector'} dataAlign='right' dataField='sector' filter={ { type: 'SelectFilter', options: sectors} }></TableHeaderColumn>
+      <TableHeaderColumn tdStyle={ { fontSize: '75%'} } headerText={'Sector'} dataAlign='right' dataField='sector' filter={ { type: 'SelectFilter', options: sectors} }></TableHeaderColumn>
     </BootstrapTable>
     </div>
 

@@ -14,11 +14,11 @@ const AddStocksForm = ({ currentUser, addStocks, message }) => {
     form.reset();
   }
   return(
-    <div>
-      <h1>Add Stock</h1>
+    <div align="center" style={{marginTop: '20px'}}>
+      <h4>Add Stock</h4>
         <form id="input-form" onSubmit={handleSubmit.bind(this)}>
         <div>
-          <label>Ticker:</label>
+          <label>Ticker</label>
           <input type="text" ref = {node => this.symbol = node} />
         </div>
         <br></br>

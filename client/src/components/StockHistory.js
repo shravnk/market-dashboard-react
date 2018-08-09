@@ -15,7 +15,9 @@ const StockHistory = ({historyData, period}) => {
       }
       const chartData = Object.assign({}, {labels: historyLabels, datasets: [{
           lineTension: 0,
-          data: historyValues
+          data: historyValues,
+          fill: false,
+          spanGaps: true
           }]})
       const chartOptions = {
         legend: {

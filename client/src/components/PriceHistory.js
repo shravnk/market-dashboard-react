@@ -9,7 +9,8 @@ const PriceHistory = ({historyData, symbol, display, ready}) => {
     const historyLabels = historyData.map(day => day.date)
     const chartData = Object.assign({}, {labels: historyLabels, datasets: [{
         lineTension: 0,
-        data: historyValues
+        data: historyValues,
+        spanGaps: true
         }]})
     const chartOptions = {
       legend: {

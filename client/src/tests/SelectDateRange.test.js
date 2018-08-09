@@ -24,7 +24,7 @@ test('clicking on highlighted cell does not trigger API request', () => {
   expect(mockFn).not.toHaveBeenCalled()
 })
 
-test('clicking on another cell highlights that cell', () => {
+test('clicking on another cell highlights that cell and triggers API request', () => {
   wrapper.find('td[children="5D"]').simulate('click')
   expect(wrapper.find('td[children="5D"]').prop('style')).toHaveProperty('backgroundColor', '#b5ddc5')
   expect(mockFn).toHaveBeenCalled()

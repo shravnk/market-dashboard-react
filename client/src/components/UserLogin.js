@@ -15,15 +15,15 @@ const LoginUser = ({ loginUser }) => {
     loginUser(data)
   }
   return(
-    <div>
+    <div align="center">
       <h1>Log In</h1>
         <form onSubmit={handleSubmit.bind(this)}>
         <div>
-          <label>Username:</label>
+          <label>Username</label>
           <input type="text" ref = {node => this.username = node} />
         </div>
         <div>
-          <label>Password:</label>
+          <label>Password</label>
           <input type="text" ref = {node => this.password = node} />
         </div>
         <br></br>

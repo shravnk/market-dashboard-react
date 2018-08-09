@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { logout } from '../actions/userActions'
 import { bindActionCreators } from 'redux';
@@ -13,26 +13,33 @@ const NavBar = ({currentUser, logout}) => {
   const renderLinks = (currentUser) => {
     if (currentUser.auth_success) {
       return (
-        <div style={{ borderBottom: '2px solid black', paddingBottom: '10px', marginBottom: '12px' }}>
+        <div className="nav" >
+          <ul>
+          <li>
           <NavLink
             style={{ marginRight: '10px' }}
             to="/home"
           >
             My Stocks
           </NavLink>
+          </li>
+          <li>
           <NavLink
             style={{ marginRight: '10px' }}
             to="/overview"
           >
             Market Overview
           </NavLink>
+          </li>
+          <li>
           <NavLink
             style={{ marginRight: '10px' }}
             to="/manage"
           >
             Add Stocks
           </NavLink>
-
+          </li>
+          <li>
           <NavLink
             style={{ marginRight: '10px' }}
             onClick={handleSubmit}
@@ -40,25 +47,33 @@ const NavBar = ({currentUser, logout}) => {
           >
             Log Out
           </NavLink>
-
+          </li>
+          </ul>
         </div>
       )
     } else {
       return(
-        <div style={{ borderBottom: '2px solid black', paddingBottom: '10px', marginBottom: '12px' }}>
+        <div className="nav">
+          <ul>
+          <li>
           <NavLink
             style={{ marginRight: '10px' }}
             to="/login"
           >
           Login
           </NavLink>
+          </li>
+          <li>
           <NavLink
             style={{ marginRight: '10px' }}
             to="/signup"
           >
           Sign Up
           </NavLink>
+          </li>
+          </ul>
         </div>
+
       )
     }
   }

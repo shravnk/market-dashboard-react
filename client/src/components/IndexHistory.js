@@ -7,6 +7,7 @@ const IndexHistory = ({indexData}) => {
   const chartData = Object.assign({}, {labels: historyLabels, datasets: [{
       lineTension: 0,
       data: historyValues,
+      spanGaps: true
       }]})
   const chartOptions = {
     legend: {

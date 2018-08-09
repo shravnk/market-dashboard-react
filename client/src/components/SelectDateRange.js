@@ -1,42 +1,48 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const SelectDateRange = ({symbol, setRange}) => {
-
-  const onCellClick = (e) => {
-    unhighlight()
-    e.target.style.backgroundColor = "#b5ddc5"
-    setRange(symbol, e.target.innerHTML)
-  }
-
-  const styles = {backgroundColor: '#b5ddc5'}
-
-  return (
-    <div className="row">
-      <div className="col-md-8" >
-      </div>
-      <div className="col-md-4" >
-        <table id="range-options" className="table table-sm table-bordered">
-          <tbody>
-            <tr>
-              <td style={styles} onClick={(e) => onCellClick(e)}>1D</td>
-              <td onClick={(e) => onCellClick(e)}>5D</td>
-              <td onClick={(e) => onCellClick(e)}>1M</td>
-              <td onClick={(e) => onCellClick(e)}>1Y</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  )
-}
-
-function unhighlight() {
-  var table = document.getElementById('range-options');
-  var cells = table.getElementsByTagName('td');
-  for (var i = 0; i < cells.length; i++) {
-        cells[i].style.backgroundColor = "";
+export class SelectDateRange extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      highlightRange: "1D"
     }
   }
+
+  onCellClick = (range) => {
+    if (range !== this.state.highlightRange) {
+      this.props.setRange(this.props.symbol, range)
+      this.setState({
+        highlightRange: range
+      })
+    }
+  }
+
+  highlight = (range) => {
+    if (range === this.state.highlightRange) {
+      return '#b5ddc5'
+    }
+  }
+
+  render() {
+    const rangeOptions = ["1D","5D","1M","1Y"]
+    const tableCells = rangeOptions.map((range, i) => <td key={i} style={{backgroundColor: this.highlight(range)}} onClick={() => this.onCellClick(range)}>{range}</td>)
+    return (
+      <div className="row">
+        <div className="col-md-8" >
+        </div>
+        <div className="col-md-4" >
+          <table id="range-options" className="table table-sm table-bordered">
+            <tbody>
+              <tr>
+                {tableCells}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      )
+    }
+}
 
 
 export default SelectDateRange;

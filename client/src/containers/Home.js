@@ -4,9 +4,8 @@ import PriceHistory from '../components/PriceHistory'
 import * as actions from '../actions/stockActions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { withRouter } from 'react-router-dom'
 
-class Home extends Component  {
+export class Home extends Component  {
   constructor () {
     super()
     this.state = {
@@ -14,10 +13,11 @@ class Home extends Component  {
     }
   }
   componentWillMount() {
-    this.props.actions.clearHistoryData( )
+    this.props.actions.clearHistoryData()
   }
   componentDidMount() {
-    this.props.actions.fetchStocksCurrentData(this.props.user.stocks)
+    const stockList = this.props.user.stocks.map(stock => stock.symbol).join(",")
+    this.props.actions.fetchStocksCurrentData(stockList)
   }
 
   changeDisplay = (bool) => {
@@ -49,7 +49,7 @@ class Home extends Component  {
         <div className="col-md-4 offset-md-8 text-center" style={{position:'fixed'}}>
           <br/>
           <PriceHistory historyData={historyData} symbol={this.props.stocks.historySymbol} display={this.state.displayHistory}
-          loading={this.props.stocks.historyLoading}/>
+          ready={this.props.stocks.historyReady}/>
         </div>
       </div>
       </div>
@@ -77,4 +77,4 @@ const arrayToObject = (array) =>
    }, {})
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home))
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

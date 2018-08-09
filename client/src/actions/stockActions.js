@@ -1,21 +1,20 @@
-import fetch from 'isomorphic-fetch'
+import 'isomorphic-fetch'
 import * as apiHandlers from '../helpers/apiHandlers'
 
 export function fetchStocksCurrentData(stocks) {
-  const stockList = stocks.map(stock => stock.symbol).join(",")
-  const url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${stockList}&types=quote`
+  const url = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${stocks}&types=quote`
   return (dispatch) => {
     dispatch({type: 'CURRENT_DATA_BEGIN'})
     return fetch(url)
       .then(response => {
         if (response.status !== 200) {
-          response.json()
+          return response.json()
           .then(stocksResponseJson => {
-            const stocksAttempt = {message: stocksResponseJson[0]}
+            const stocksAttempt = stocksResponseJson
             dispatch({type: 'CURRENT_DATA_FAILURE', payload: stocksAttempt})
           })
         } else {
-          response.json()
+            return response.json()
             .then(responseJSON => {
               const currentData = apiHandlers.current(responseJSON)
               dispatch({type: 'CURRENT_DATA_SUCCESS', payload: currentData})
@@ -98,7 +97,7 @@ export function fetchIndicesCurrentData() {
     dispatch({type: 'LOADING_INDEX_DATA'})
     return fetch(url)
     .then(response => {
-        response.json()
+        return response.json()
           .then(responseJSON => {
             const indicesData = apiHandlers.indices(responseJSON)
             dispatch({type: 'INDEX_DATA_SUCCESS', payload: indicesData

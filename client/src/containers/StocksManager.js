@@ -7,7 +7,7 @@ import {addStocks} from '../actions/userActions.js'
 import {deleteMessage} from '../actions/userActions'
 
 
-class StocksManager extends Component {
+export class StocksManager extends Component {
 
   componentWillUnmount() {
     this.props.deleteMessage()
@@ -16,7 +16,7 @@ class StocksManager extends Component {
   render() {
     return(
       <div>
-      <AddStocksForm currentUser={this.props.currentUser} addStocks={this.props.addStocks} message={this.props.message} />
+        <AddStocksForm currentUser={this.props.currentUser} addStocks={this.props.addStocks} message={this.props.message} />
       </div>
     )
   }
@@ -37,4 +37,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(StocksManager))
+export default connect(mapStateToProps, mapDispatchToProps)(StocksManager)

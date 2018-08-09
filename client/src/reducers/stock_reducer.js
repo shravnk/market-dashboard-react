@@ -1,7 +1,7 @@
 export default function stockReducer(state = {
   currentLoading: false,
   detailsLoading: false,
-  historyLoading: false,
+  historyReady: false,
   currentIndexName: 'SPY'
   }, action) {
   switch (action.type) {
@@ -20,11 +20,11 @@ export default function stockReducer(state = {
       return Object.assign({}, state, {currentStockPrice: action.payload})
 
     case 'HISTORY_DATA_BEGIN':
-      return Object.assign({}, state, {historyLoading: true, historyData: null, historyPeriod: null, historySymbol: null})
+      return Object.assign({}, state, {historyReady: false, historyData: null, historyPeriod: null, historySymbol: null})
     case 'HISTORY_DATA_SUCCESS':
-      return Object.assign({}, state, {historyLoading: false, historyData: action.payload, historyPeriod: action.period, historySymbol: action.symbol})
+      return Object.assign({}, state, {historyReady: true, historyData: action.payload, historyPeriod: action.period, historySymbol: action.symbol})
     case 'CLEAR_HISTORY_DATA':
-      return Object.assign({}, state, {historyLoading: true, historyData: null})
+      return Object.assign({}, state, {historyReady: false, historyData: null})
 
     case 'GAINER_DATA_SUCCESS':
       return Object.assign({}, state, {gainerData: action.payload})

@@ -1,5 +1,5 @@
 export const current = (json) => {
-  return Object.values(json).map((stock) => ({
+  return Object.keys(json).map((k) => json[k]).map((stock) => ({
     symbol: stock.quote.symbol,
     latestPrice: stock.quote.latestPrice.toFixed(2),
     changePercent: (stock.quote.changePercent * 100).toFixed(2),

@@ -2,7 +2,7 @@ import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import { withRouter } from 'react-router-dom';
 
-const IndexCurrent = ({indices, changeIndexDisplay}) => {
+export const IndexCurrent = ({indices, changeIndexDisplay}) => {
 
   const options = {
      onRowMouseOver: function(row){

@@ -25,7 +25,7 @@ export class SelectDateRange extends Component {
 
   render() {
     const rangeOptions = ["1D","5D","1M","1Y"]
-    const tableCells = rangeOptions.map((range, i) => <td key={i} style={{backgroundColor: this.highlight(range)}} onClick={() => this.onCellClick(range)}>{range}</td>)
+    const tableCells = rangeOptions.map((range, index) => <td key={index} id={"range-" + index} style={{backgroundColor: this.highlight(range)}} onClick={() => this.onCellClick(range)}>{range}</td>)
     return (
       <div className="row">
         <div className="col-md-8" >

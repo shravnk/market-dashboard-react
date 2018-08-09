@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import AddStocksForm from '../components/AddStocksForm'
 import {addStocks} from '../actions/userActions.js'
